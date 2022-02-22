@@ -4,8 +4,8 @@
 
 	<parent>
 		<groupId>org.iglooproject.components</groupId>
-		<artifactId>igloo-components</artifactId>
-		<version>3.4.0-SNAPSHOT</version>
+		<artifactId>components</artifactId>
+		<version>4.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>igloo-component-commons-io</artifactId>
@@ -13,23 +13,40 @@
 	<name>Igloo - Component - commons-io helpers</name>
 	<description>Igloo commons-io</description>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-logging</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-commons</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-tools</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-testing</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
-	
-		<!-- Igloo -->
-		
-		<dependency>
-			<groupId>org.iglooproject.dependencies</groupId>
-			<artifactId>igloo-dependency-core-logging</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.iglooproject.components</groupId>
-			<artifactId>igloo-component-truevfs</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -41,21 +58,42 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.iglooproject.dependencies</groupId>
-			<artifactId>igloo-dependency-test</artifactId>
+			<groupId>net.java.truevfs</groupId>
+			<artifactId>truevfs-access</artifactId>
+		</dependency>
+		
+		<!-- Runtime stack : truevfs jar & zip -->
+		<dependency>
+			<groupId>net.java.truevfs</groupId>
+			<artifactId>truevfs-profile-base</artifactId>
 			<type>pom</type>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.iglooproject.dependencies</groupId>
-			<artifactId>igloo-dependency-core-logging-log4j2</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
+	
 </project>
