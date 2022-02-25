@@ -22,6 +22,7 @@
 		<module>igloo-component-commons-io</module>
 		<module>igloo-component-functional</module>
 		<module>igloo-component-truevfs</module>
+		<module>igloo-collections</module>
 	</modules>
 
 	<build>
