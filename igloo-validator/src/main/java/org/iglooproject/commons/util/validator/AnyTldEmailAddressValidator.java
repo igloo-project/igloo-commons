@@ -3,7 +3,7 @@ package org.iglooproject.commons.util.validator;
 import java.io.Serializable;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.iglooproject.functional.SerializablePredicate2;
+import org.danekja.java.util.function.serializable.SerializablePredicate;
 
 /**
  * An {@link EmailValidator} relying on {@link AnyTldDomainValidator} for domain validation.
@@ -37,7 +37,7 @@ public class AnyTldEmailAddressValidator extends EmailValidator implements Seria
 		return AnyTldDomainValidator.getInstance().isValid(domain);
 	}
 
-	public SerializablePredicate2<String> predicate() {
+	public SerializablePredicate<String> predicate() {
 		return this::isValid;
 	}
 

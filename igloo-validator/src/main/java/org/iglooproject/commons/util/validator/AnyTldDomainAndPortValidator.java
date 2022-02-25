@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.RegexValidator;
-import org.iglooproject.functional.SerializablePredicate2;
+import org.danekja.java.util.function.serializable.SerializablePredicate;
 
 /**
  * A fixed "authority" validator that allows <em>any</em> TLD, and not only some hard-coded list, since allowed TLDs may vary over time.
@@ -27,7 +27,7 @@ public final class AnyTldDomainAndPortValidator extends RegexValidator implement
 		super(DOMAIN_NAME_AND_PORT_REGEX);
 	}
 
-	public SerializablePredicate2<String> predicate() {
+	public SerializablePredicate<String> predicate() {
 		return this::isValid;
 	}
 

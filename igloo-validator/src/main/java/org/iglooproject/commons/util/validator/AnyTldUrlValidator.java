@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.validator.routines.UrlValidator;
-import org.iglooproject.functional.SerializablePredicate2;
+import org.danekja.java.util.function.serializable.SerializablePredicate;
 
 /**
  * An {@link UrlValidator} relying on {@link AnyTldDomainAndPortValidator} for domain and port validation.
@@ -62,7 +62,7 @@ public class AnyTldUrlValidator extends UrlValidator implements Serializable {
 		super(schemes, AnyTldDomainAndPortValidator.getInstance(), 0L);
 	}
 
-	public SerializablePredicate2<String> predicate() {
+	public SerializablePredicate<String> predicate() {
 		return this::isValid;
 	}
 	

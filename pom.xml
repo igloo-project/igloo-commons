@@ -25,6 +25,7 @@
 		<module>igloo-collections</module>
 		<module>igloo-context</module>
 		<module>igloo-lang</module>
+		<module>igloo-validator</module>
 	</modules>
 
 	<build>
