@@ -17,12 +17,19 @@ maven-build:
     - "mvn package"
   tags:
     - docker
+  artifacts:
+    when: always
+    paths:
+      - "**/target/surefire-reports/TEST-*.xml"
+    reports:
+      junit:
+        - "**/target/surefire-reports/TEST-*.xml"
 
 maven-deploy:
   stage: deploy
   environment: staging
   script:
-    - "mvn deploy -DperformRelease"
+    - "mvn deploy -DperformRelease -DskipTests"
   only:
     - /^main$/
     - /^dev$/
