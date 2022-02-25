@@ -24,6 +24,7 @@
 		<module>igloo-component-truevfs</module>
 		<module>igloo-collections</module>
 		<module>igloo-context</module>
+		<module>igloo-lang</module>
 	</modules>
 
 	<build>

@@ -62,17 +62,19 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-	
-		<!-- Igloo -->
 		<dependency>
 			<groupId>org.iglooproject.components</groupId>
 			<artifactId>bindgen-functional</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.iglooproject.components</groupId>
 			<artifactId>igloo-component-functional</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.iglooproject.components</groupId>
+			<artifactId>igloo-lang</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
