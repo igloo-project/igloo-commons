@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -27,7 +28,7 @@ import com.google.common.collect.Sets;
  * <p>Methods named xAsY ({@link #linkedListAsList()}, {@link #treeSetAsSet(Comparator)}, and so on) are just here to
  * make your like easy when you want to use the diamond operator on a method that receives your supplier as a parameter.
  * For instance:
- * <code><pre>
+ * <pre>{@code
  * public MyType&lt;T, C extends Collection&lt;T&gt;&gt; {
  *   public MyType(Supplier&lt;C&gt; supplier) {
  *     // ...
@@ -40,7 +41,7 @@ import com.google.common.collect.Sets;
  * // With xAsY
  * ... = new MyType&lt;&gt;(Supplier2.&lt;T&gt;arrayListAsList());
  * // ... which is a tad shorter
- * </pre></code>
+ * }</pre>
  */
 public final class Suppliers2 {
 
@@ -54,14 +55,14 @@ public final class Suppliers2 {
 	}
 
 	/**
-	 * @see {@link com.google.common.base.Suppliers#memoize(com.google.common.base.Supplier)}
+	 * @see Suppliers#memoize(com.google.common.base.Supplier)
 	 */
 	public static <T> SerializableSupplier2<T> memoize(Supplier<T> delegate) {
 		return from(com.google.common.base.Suppliers.memoize(from(delegate)));
 	}
 
 	/**
-	 * @see {@link com.google.common.base.Suppliers#memoizeWithExpiration(com.google.common.base.Supplier, long, TimeUnit)}
+	 * @see Suppliers#memoizeWithExpiration(com.google.common.base.Supplier, long, TimeUnit)
 	 */
 	public static <T> SerializableSupplier2<T> memoizeWithExpiration(Supplier<T> delegate, long duration, TimeUnit unit) {
 		return from(com.google.common.base.Suppliers.memoizeWithExpiration(from(delegate), duration, unit));
@@ -72,7 +73,7 @@ public final class Suppliers2 {
 	}
 
 	/**
-	 * @see {@link com.google.common.base.Suppliers#synchronizedSupplier(com.google.common.base.Supplier)}
+	 * @see com.google.common.base.Suppliers#synchronizedSupplier(com.google.common.base.Supplier)
 	 */
 	public static <T> SerializableSupplier2<T> synchronizedSupplier(Supplier<T> delegate) {
 		return from(com.google.common.base.Suppliers.synchronizedSupplier(from(delegate)));

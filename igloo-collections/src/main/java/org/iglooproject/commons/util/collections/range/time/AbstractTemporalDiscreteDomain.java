@@ -22,7 +22,6 @@ import java.time.temporal.TemporalUnit;
  * @see LocalDateTime
  * @see ZonedDateDiscreteDomain
  * @see ZonedDateTime
- * @see InstantDiscreteDomain
  * @see Instant
  */
 abstract class AbstractTemporalDiscreteDomain<T extends Temporal & Comparable<? super T>> extends PartitionDiscreteDomain<T>

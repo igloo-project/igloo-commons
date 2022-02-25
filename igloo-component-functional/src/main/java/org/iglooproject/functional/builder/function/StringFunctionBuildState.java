@@ -20,13 +20,15 @@ public interface StringFunctionBuildState
 	
 	TStringState trim();
 
-	/** Strips all whitespace characters from the beginning and the end of <code>charSequence</code>.
-	 * <p>Exactly what is a whitespace is defined by {@link CharMatcher.WHITESPACE} ; this includes non-breaking spaces.
+	/**
+	 * <p>Strips all whitespace characters from the beginning and the end of {@code charSequence}.</p>
+	 * 
+	 * <p>Exactly what is a whitespace is defined by {@link CharMatcher#whitespace()} ; this includes non-breaking spaces.</p>
 	 */
 	TStringState strip();
 	
 	/**
-	 * Shorthand for .trimmed().stripped()
+	 * Shorthand for {@code .trimmed().stripped()}
 	 */
 	TStringState clean();
 	

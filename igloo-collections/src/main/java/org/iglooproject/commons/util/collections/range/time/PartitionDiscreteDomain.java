@@ -25,7 +25,7 @@ public abstract class PartitionDiscreteDomain<T extends Comparable> extends Disc
 	public abstract T alignNext(T value);
 
 	/**
-	 * {@link #alignNext(T) align} a range on this domain, extending the range as necessary.
+	 * Aligns a range on this domain, extending the range as necessary.
 	 */
 	public Range<T> alignOut(Range<T> value) {
 		Range<T> result;

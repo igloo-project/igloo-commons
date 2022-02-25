@@ -22,13 +22,13 @@ public interface IExecutionContext {
 	 * {@link ITearDownHandle#close()}.
 	 * 
 	 * <p>This is generally used this way:
-	 * <code><pre>
+	 * <pre>{@code
 	 * IExecutionContext context = ... ;
 	 * try (AutoCloseable openContext = context.open()) {
 	 *   // Do stuff that requires the context
 	 * }
 	 * // Here the context has been automatically closed 
-	 * </pre></code>
+	 * }</pre>
 	 */
 	ITearDownHandle open();
 	
@@ -47,7 +47,7 @@ public interface IExecutionContext {
 	void run(Runnable runnable);
 	
 	/**
-	 * Set up the context, run the given {@link callable}, tear down the context, and return the callable's result
+	 * Set up the context, run the given {@link Callable}, tear down the context, and return the callable's result
 	 * (if any, i.e. if it didn't throw an exception).
 	 * <p>The implementation must tear down the context even if the runnable throws an exception.
 	 */

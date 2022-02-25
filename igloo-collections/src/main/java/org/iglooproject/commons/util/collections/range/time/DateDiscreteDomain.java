@@ -19,7 +19,6 @@ import com.google.common.collect.Range;
  * 
  * @see LocalDateTime
  * @see ZonedDateDiscreteDomain
- * @see InstantDiscreteDomain
  */
 public class DateDiscreteDomain extends AbstractTemporalDiscreteDomain<LocalDateTime> implements Serializable {
 
@@ -49,7 +48,7 @@ public class DateDiscreteDomain extends AbstractTemporalDiscreteDomain<LocalDate
 	/**
 	 * @return A discrete domain for the first day of each week at midnight.
 	 * <p><strong>WARNING:</strong> When using this domain in a contiguous set, you <strong>must</strong>
-	 * ensure that your range has been {@link DateDiscreteDomain#align(Range) aligned} on this domain.
+	 * ensure that your range has been {@link DateDiscreteDomain#alignOut(Range) aligned} on this domain.
 	 * Otherwise, you will experience infinite loops.
 	 */
 	public static DateDiscreteDomain weeks() {
