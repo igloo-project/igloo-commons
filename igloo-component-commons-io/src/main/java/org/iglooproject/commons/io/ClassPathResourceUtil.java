@@ -3,9 +3,9 @@ package org.iglooproject.commons.io;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.iglooproject.commons.io.internal.ClassPathResourceHelper;
 
@@ -71,7 +71,7 @@ public class ClassPathResourceUtil {
 	 * @throws IOException if file cannot be found or read, or content cannot be read as a string.
 	 */
 	public String asUtf8String(String classpathUrl) throws IOException {
-		return asString(classpathUrl, Charsets.UTF_8.name());
+		return asString(classpathUrl, StandardCharsets.UTF_8.name());
 	}
 
 	/**

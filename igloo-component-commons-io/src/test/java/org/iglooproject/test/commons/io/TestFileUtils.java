@@ -420,7 +420,7 @@ public class TestFileUtils {
 		Assertions.assertThat(file4.createNewFile()).isTrue();
 		
 		Collection<File> files = FileUtils.listRecursively(subFolder,
-				FileFileFilter.FILE, // list only files
+				FileFileFilter.INSTANCE, // list only files
 				new DelegateFileFilter(f -> f.getName().equals(dir1.getName())) // recurse only in dir1
 		);
 		Assertions.assertThat(files).hasSize(3);
