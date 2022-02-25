@@ -1,0 +1,33 @@
+---
+
+image:
+  name: maven:3.8-openjdk-11
+
+variables:
+  MAVEN_OPTS: "-Xmx256m"
+
+stages:
+  - build
+  - deploy
+
+maven-build:
+  stage: build
+  environment: staging
+  script:
+    - "mvn package"
+  tags:
+    - docker
+
+maven-deploy:
+  stage: deploy
+  environment: staging
+  script:
+    - "mvn deploy -DperformRelease"
+  only:
+    - /^main$/
+    - /^dev$/
+    - /^ft-.*-deploy$/
+    - /^rl-.*$/
+    - /^hf-.*$/
+  tags:
+    - docker
