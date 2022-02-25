@@ -18,7 +18,6 @@
 	
 	<modules>
 		<module>bindgen-functional</module>
-		<module>igloo-component-commons</module>
 		<module>igloo-component-commons-io</module>
 		<module>igloo-component-functional</module>
 		<module>igloo-component-truevfs</module>
@@ -26,6 +25,9 @@
 		<module>igloo-context</module>
 		<module>igloo-lang</module>
 		<module>igloo-validator</module>
+		<module>igloo-bean-api</module>
+		<module>igloo-batch-api</module>
+		<module>igloo-security-api</module>
 	</modules>
 
 	<build>
