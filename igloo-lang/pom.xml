@@ -13,6 +13,10 @@
 	<name>Igloo - basic language structures</name>
 	<description>Very general utilitary objects.</description>
 
+	<properties>
+		<igloo.processors>${igloo.processor.bindgen}</igloo.processors>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -31,6 +35,13 @@
 			</dependency>
 			<dependency>
 				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-bindgen</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
 				<artifactId>dependencies-testing</artifactId>
 				<version>${igloo.igloo-maven.version}</version>
 				<type>pom</type>
@@ -40,6 +51,15 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.bindgen</groupId>
+			<artifactId>bindgen</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.iglooproject.components</groupId>
+			<artifactId>bindgen-functional</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -58,6 +78,10 @@
 	
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>flatten-maven-plugin</artifactId>
