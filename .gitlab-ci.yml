@@ -9,6 +9,7 @@ variables:
 stages:
   - build
   - deploy
+  - trigger
 
 maven-build:
   stage: build
@@ -38,3 +39,12 @@ maven-deploy:
     - /^hf-.*$/
   tags:
     - docker
+
+trigger:
+  stage: trigger
+  trigger:
+    project: igloo-project/igloo-parent
+    strategy: depend
+    branch: $CI_COMMIT_BRANCH
+  only:
+    - /^dev$/
