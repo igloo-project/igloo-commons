@@ -41,6 +41,22 @@
 						<flattenMode>clean</flattenMode>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<configuration>
+						<additionalJOptions>
+							<additionalJOption>-J--add-exports=jdk.javadoc/jdk.javadoc.internal.tool=ALL-UNNAMED</additionalJOption>
+						</additionalJOptions>
+						<doclet>org.jdrupes.mdoclet.MDoclet</doclet>
+						<docletArtifact>
+							<groupId>org.jdrupes.mdoclet</groupId>
+							<artifactId>doclet</artifactId>
+							<version>2.1.0</version>
+						</docletArtifact>
+						<release combine.self="override"></release>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>

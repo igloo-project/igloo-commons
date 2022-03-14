@@ -19,14 +19,17 @@ public final class CollectionUtils {
 	private CollectionUtils() { }
 	
 	/**
-	 * Replaces all elements in <code>dst</code> by those in <code>src</code>.
-	 * <p>This method is view-proof : it will work as expected even if <code>src</code> is a view of <code>dst</code>,
-	 * i.e. if <code>src</code>'s content depends on <code>dst</code>'s (see for example
+	 * Replaces all elements in `dst` by those in `src`.
+	 * 
+	 * This method is view-proof : it will work as expected even if `src` is a view of `dst`,
+	 * i.e. if `src`'s content depends on `dst`'s (see for example
 	 * {@link Collections#unmodifiableCollection(Collection)}, {@link Sets#union(java.util.Set, java.util.Set)}, ...).
-	 * <p>In the process, this method may copy the elements of <code>src</code> in a new collection,
-	 * hence it is not advisable to use it on large collections or in frequently called methods. 
+	 * 
+	 * In the process, this method may copy the elements of `src` in a new collection,
+	 * hence it is not advisable to use it on large collections or in frequently called methods.
+	 *  
 	 * @param dst The collection whose content is to be replaced. Not null.
-	 * @param src The collection whose content is to be copied to <code>dst</code>, or null to simply clear <code>dst</code>.
+	 * @param src The collection whose content is to be copied to `dst`, or null to simply clear `dst`.
 	 */
 	public static <T> void replaceAll(Collection<T> dst, Collection<? extends T> src) {
 		if (src == null) {
@@ -69,8 +72,8 @@ public final class CollectionUtils {
 	}
 	
 	/**
-	 * <strong>WARNING:</strong> very low efficiency (O(N*N))
-	 * @return A list containing the elements of source that are not in filter, using <code>equivalence</code> to distinguish different elements.
+	 * **WARNING:** very low efficiency `(O(N*N))`
+	 * @return A list containing the elements of source that are not in filter, using `equivalence` to distinguish different elements.
 	 */
 	public static <T> List<T> difference(Iterable<? extends T> source, Iterable<? extends T> filter, Equivalence<? super T> equivalence) {
 		final List<T> result = new LinkedList<>();
@@ -90,8 +93,9 @@ public final class CollectionUtils {
 	}
 
 	/**
-	 * <strong>WARNING:</strong> very low efficiency (O(N*N))
-	 * @return A list containing the elements of source that are also in filter, using <code>equivalence</code> to distinguish different elements.
+	 * **WARNING:** very low efficiency `(O(N*N))`
+	 * 
+	 * @return A list containing the elements of source that are also in filter, using `equivalence` to distinguish different elements.
 	 */
 	public static <T> List<T> intersection(Iterable<? extends T> source, Iterable<? extends T> filter, Equivalence<? super T> equivalence) {
 		final List<T> result = new LinkedList<>();

@@ -21,14 +21,14 @@ public interface IExecutionContext {
 	 * Set up the context for execution and return an {@link ITearDownHandle} that will tear down the context upon
 	 * {@link ITearDownHandle#close()}.
 	 * 
-	 * <p>This is generally used this way:
-	 * <pre>{@code
+	 * This is generally used this way:
+	 * ```java
 	 * IExecutionContext context = ... ;
 	 * try (AutoCloseable openContext = context.open()) {
 	 *   // Do stuff that requires the context
 	 * }
 	 * // Here the context has been automatically closed 
-	 * }</pre>
+	 * ```
 	 */
 	ITearDownHandle open();
 	
