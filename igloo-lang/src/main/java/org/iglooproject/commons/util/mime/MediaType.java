@@ -45,7 +45,7 @@ public enum MediaType {
 	APPLICATION_ODF_CHART("application/vnd.oasis.opendocument.chart", "odc"),
 	
 	// Text
-	TEXT_PLAIN("text/plain", "plain"),
+	TEXT_PLAIN("text/plain", "txt"),
 	TEXT_CSS("text/css", "css"),
 	TEXT_CSV("text/csv", "csv"),
 	TEXT_HTML("text/html", "html", Lists.newArrayList("htm")),
