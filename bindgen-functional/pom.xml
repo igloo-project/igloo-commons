@@ -57,11 +57,6 @@
 			<groupId>org.bindgen</groupId>
 			<artifactId>bindgen</artifactId>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>

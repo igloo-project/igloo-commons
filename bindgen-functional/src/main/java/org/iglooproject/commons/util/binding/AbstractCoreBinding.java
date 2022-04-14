@@ -1,13 +1,13 @@
 package org.iglooproject.commons.util.binding;
 
+import java.util.function.Predicate;
+
 import org.bindgen.BindingRoot;
 import org.bindgen.Getter;
 import org.bindgen.Setter;
 import org.bindgen.binding.AbstractBinding;
 import org.iglooproject.functional.Predicates2;
 import org.iglooproject.functional.SerializablePredicate2;
-
-import com.google.common.base.Predicate;
 
 public class AbstractCoreBinding<R, P, T> extends AbstractBinding<R, P, T> implements ICoreBinding<R, T> {
 

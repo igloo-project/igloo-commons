@@ -1,11 +1,10 @@
 package org.iglooproject.commons.util.binding;
 
+import java.util.function.Predicate;
+
 import org.bindgen.BindingRoot;
 import org.iglooproject.functional.SerializableFunction2;
 import org.iglooproject.functional.SerializablePredicate2;
-
-import com.google.common.base.Predicate;
-
 
 public interface ICoreBinding<R, T> extends BindingRoot<R, T>, SerializableFunction2<R, T> {
 
