@@ -1,0 +1,49 @@
+---
+
+image:
+  name: maven:3.8-openjdk-11
+
+variables:
+  MAVEN_OPTS: "-Xmx256m"
+
+stages:
+  - build
+  - deploy
+  - trigger
+
+maven-build:
+  stage: build
+  environment: staging
+  script:
+    - "mvn package"
+  tags:
+    - docker
+  artifacts:
+    when: always
+    paths:
+      - "**/target/surefire-reports/TEST-*.xml"
+    reports:
+      junit:
+        - "**/target/surefire-reports/TEST-*.xml"
+
+maven-deploy:
+  stage: deploy
+  environment: staging
+  script:
+    - "mvn deploy -DperformRelease -DskipTests"
+  only:
+    - /^main$/
+    - /^dev$/
+    - /^ft-.*-deploy$/
+    - /^rl-.*$/
+    - /^hf-.*$/
+  tags:
+    - docker
+
+trigger:
+  stage: trigger
+  trigger:
+    project: igloo-project/igloo-parent
+    branch: $CI_COMMIT_BRANCH
+  only:
+    - /^dev$/
