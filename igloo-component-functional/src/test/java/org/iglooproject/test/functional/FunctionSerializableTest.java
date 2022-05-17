@@ -6,22 +6,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
+import org.assertj.core.api.Assertions;
 import org.iglooproject.functional.Functions2;
 import org.iglooproject.functional.SerializableFunction2;
 import org.iglooproject.functional.SerializablePredicate2;
 import org.iglooproject.functional.SerializableSupplier2;
 import org.iglooproject.functional.Suppliers2;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
-@RunWith(Parameterized.class)
 public class FunctionSerializableTest {
 
 	private static final SerializableFunction2<Object, Object> FUNCTION_SERIALIZABLE = new SerializableFunction2<Object, Object>() {
@@ -48,52 +46,48 @@ public class FunctionSerializableTest {
 		}
 	};
 
-	@Parameters
-	public static Iterable<Function<? extends Object, ? extends Object>> data() {
-		return ImmutableList.<Function<? extends Object, ? extends Object>>builder()
-				.add(FUNCTION_SERIALIZABLE.compose(FUNCTION_SERIALIZABLE))
-				.add(FUNCTION_SERIALIZABLE.andThen(FUNCTION_SERIALIZABLE))
-				.add(SerializableFunction2.identity())
-				.add(Functions2.from(FUNCTION_SERIALIZABLE))
-				.add(Functions2.identity())
-				.add(Functions2.toStringFunction())
-				.add(Functions2.forMap(ImmutableMap.of(1337L, "Igloo")))
-				.add(Functions2.forMap(ImmutableMap.of(1337L, "Igloo"), "Igloo"))
-				.add(Functions2.forMap(ImmutableMap.of(1337L, "Igloo"), FUNCTION_SERIALIZABLE))
-				.add(Functions2.compose(FUNCTION_SERIALIZABLE, FUNCTION_SERIALIZABLE))
-				.add(Functions2.andThen(FUNCTION_SERIALIZABLE, FUNCTION_SERIALIZABLE))
-				.add(Functions2.forPredicate(PREDICATE_SERIALIZABLE))
-				.add(Functions2.constant("Igloo"))
-				.add(Functions2.forSupplier(SUPPLIER_SERIALIZABLE))
-				.add(Functions2.transformedIterable(FUNCTION_SERIALIZABLE))
-				.add(Functions2.transformedCollection(FUNCTION_SERIALIZABLE))
-				.add(Functions2.transformedList(FUNCTION_SERIALIZABLE))
-				.add(Functions2.unmodifiableCollection())
-				.add(Functions2.unmodifiableList())
-				.add(Functions2.unmodifiableSet())
-				.add(Functions2.unmodifiableSortedSet())
-				.add(Functions2.unmodifiableMap())
-				.add(Functions2.unmodifiableTable())
-				.add(Functions2.first())
-				.add(Functions2.defaultValue(PREDICATE_SERIALIZABLE, FUNCTION_SERIALIZABLE))
-				.add(Functions2.defaultValue("Igloo"))
-				.add(Functions2.entryKey())
-				.add(Functions2.entryValue())
-				.add(Functions2.entryToPair())
-				.add(Functions2.tupleValue0())
-				.add(Functions2.tupleValue1())
-				.add(Functions2.capitalize())
-				.add(Functions2.uncapitalize())
-				.add(Suppliers2.supplierFunction())
-				.build();
+	public static Stream<Arguments> data() {
+		return Stream.of(
+				Arguments.arguments(FUNCTION_SERIALIZABLE.compose(FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(FUNCTION_SERIALIZABLE.andThen(FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(SerializableFunction2.identity()),
+				Arguments.arguments(Functions2.from(FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.identity()),
+				Arguments.arguments(Functions2.toStringFunction()),
+				Arguments.arguments(Functions2.forMap(ImmutableMap.of(1337L, "Igloo"))),
+				Arguments.arguments(Functions2.forMap(ImmutableMap.of(1337L, "Igloo"), "Igloo")),
+				Arguments.arguments(Functions2.forMap(ImmutableMap.of(1337L, "Igloo"), FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.compose(FUNCTION_SERIALIZABLE, FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.andThen(FUNCTION_SERIALIZABLE, FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.forPredicate(PREDICATE_SERIALIZABLE)),
+				Arguments.arguments(Functions2.constant("Igloo")),
+				Arguments.arguments(Functions2.forSupplier(SUPPLIER_SERIALIZABLE)),
+				Arguments.arguments(Functions2.transformedIterable(FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.transformedCollection(FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.transformedList(FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.unmodifiableCollection()),
+				Arguments.arguments(Functions2.unmodifiableList()),
+				Arguments.arguments(Functions2.unmodifiableSet()),
+				Arguments.arguments(Functions2.unmodifiableSortedSet()),
+				Arguments.arguments(Functions2.unmodifiableMap()),
+				Arguments.arguments(Functions2.unmodifiableTable()),
+				Arguments.arguments(Functions2.first()),
+				Arguments.arguments(Functions2.defaultValue(PREDICATE_SERIALIZABLE, FUNCTION_SERIALIZABLE)),
+				Arguments.arguments(Functions2.defaultValue("Igloo")),
+				Arguments.arguments(Functions2.entryKey()),
+				Arguments.arguments(Functions2.entryValue()),
+				Arguments.arguments(Functions2.entryToPair()),
+				Arguments.arguments(Functions2.tupleValue0()),
+				Arguments.arguments(Functions2.tupleValue1()),
+				Arguments.arguments(Functions2.capitalize()),
+				Arguments.arguments(Functions2.uncapitalize()),
+				Arguments.arguments(Suppliers2.supplierFunction()));
 	}
 
-	@Parameter(0)
-	public Function<Object, Object> function;
-
-	@Test
-	public void testSerializable() {
-		doSerializeAndDeserialize(function);
+	@ParameterizedTest
+	@MethodSource("data")
+	void testSerializable(Function<Object, Object> function) {
+		Assertions.assertThatCode(() -> doSerializeAndDeserialize(function)).doesNotThrowAnyException();
 	}
 
 	@SuppressWarnings("unchecked")

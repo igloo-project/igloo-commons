@@ -9,19 +9,16 @@ import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
+import org.assertj.core.api.Assertions;
 import org.iglooproject.functional.SerializableFunction2;
 import org.iglooproject.functional.SerializableSupplier2;
 import org.iglooproject.functional.Suppliers2;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.google.common.collect.ImmutableList;
 
-@RunWith(Parameterized.class)
-public class SupplierSerializableTest {
+class SupplierSerializableTest {
 
 	private static final SerializableSupplier2<Object> SUPPLIER_SERIALIZABLE = new SerializableSupplier2<Object>() {
 		private static final long serialVersionUID = 1L;
@@ -39,7 +36,6 @@ public class SupplierSerializableTest {
 		}
 	};
 
-	@Parameters
 	public static Iterable<Supplier<?>> data() {
 		return ImmutableList.<Supplier<?>>builder()
 				.add(Suppliers2.from(SUPPLIER_SERIALIZABLE))
@@ -75,12 +71,10 @@ public class SupplierSerializableTest {
 				.build();
 	}
 
-	@Parameter(0)
-	public Supplier<?> supplier;
-
-	@Test
-	public void testSerializable() {
-		doSerializeAndDeserialize(supplier);
+	@ParameterizedTest
+	@MethodSource("data")
+	void testSerializable(Supplier<?> supplier) {
+		Assertions.assertThatCode(() -> doSerializeAndDeserialize(supplier)).doesNotThrowAnyException();
 	}
 
 	@SuppressWarnings("unchecked")
