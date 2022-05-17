@@ -15,7 +15,7 @@ import org.assertj.core.api.Assertions;
 import org.iglooproject.commons.util.collections.range.time.DateDiscreteDomain;
 import org.iglooproject.commons.util.collections.range.time.PartitionDiscreteDomain;
 import org.iglooproject.commons.util.collections.range.time.ZonedDateDiscreteDomain;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>

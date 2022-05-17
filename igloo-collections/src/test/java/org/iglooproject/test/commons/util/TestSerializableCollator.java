@@ -1,6 +1,6 @@
 package org.iglooproject.test.commons.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,18 +13,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.iglooproject.commons.util.ordering.SerializableCollator;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-import org.iglooproject.commons.util.ordering.SerializableCollator;
-
-@RunWith(Parameterized.class)
 public class TestSerializableCollator {
 	
 	private static final Iterable<Collection<String>> COMPARISON_TEST_DATA = ImmutableList.<Collection<String>>of(
@@ -44,30 +42,22 @@ public class TestSerializableCollator {
 		return ImmutableList.of(Collator.FULL_DECOMPOSITION, Collator.CANONICAL_DECOMPOSITION, Collator.NO_DECOMPOSITION);
 	}
 	
-	@Parameters
-	public static Iterable<Object[]> data() {
-		ImmutableList.Builder<Object[]> builder = ImmutableList.builder();
+	private static Stream<Arguments> data() {
+		ImmutableList.Builder<Arguments> builder = ImmutableList.builder();
 		for (Locale locale : locales()) {
 			for (int strength : strengths()) {
 				for (int decomposition : decompositions()) {
-					builder.add(new Object[] {locale, strength, decomposition });
+					Collator collator = Collator.getInstance(locale);
+					SerializableCollator serializableCollator = new SerializableCollator(locale);
+					collator.setStrength(strength);
+					serializableCollator.setStrength(strength);
+					collator.setDecomposition(decomposition);
+					serializableCollator.setDecomposition(decomposition);
+					builder.add(Arguments.of(collator, serializableCollator));
 				}
 			}
 		}
-		return builder.build();
-	}
-	
-	private final Collator collator;
-	
-	private final SerializableCollator serializableCollator;
-
-	public TestSerializableCollator(Locale locale, int strength, int decomposition) {
-		collator = Collator.getInstance(locale);
-		serializableCollator = new SerializableCollator(locale);
-		collator.setStrength(strength);
-		serializableCollator.setStrength(strength);
-		collator.setDecomposition(decomposition);
-		serializableCollator.setDecomposition(decomposition);
+		return builder.build().stream();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -92,13 +82,15 @@ public class TestSerializableCollator {
 		}
 	}
 	
-	@Test
-	public void testSameComparisonAsCollator() {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testSameComparisonAsCollator(Collator collator, SerializableCollator serializableCollator) {
 		doTestSameComparison(collator, serializableCollator);
 	}
 	
-	@Test
-	public void testSerialization() {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testSerialization(Collator collator, SerializableCollator serializableCollator) {
 		SerializableCollator deserialized = serializeAndDeserialize(serializableCollator);
 		assertEquals(serializableCollator, deserialized);
 		doTestSameComparison(collator, deserialized);
