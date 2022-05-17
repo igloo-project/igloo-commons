@@ -1,19 +1,18 @@
 package org.iglooproject.test.commons.util;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.junit.Test;
-
 import org.iglooproject.commons.util.CloneUtils;
+import org.junit.jupiter.api.Test;
 
-public class TestCloneUtils {
+class TestCloneUtils {
 
 	@Test
-	public void testCloneDate() {
+	void testCloneDate() {
 		Calendar calendar = GregorianCalendar.getInstance();
 		calendar.set(2010, 5, 24, 17, 0, 15);
 
@@ -21,29 +20,28 @@ public class TestCloneUtils {
 
 		Date date2 = CloneUtils.clone(date1);
 
-		assertNotSame(date1, date2);
-		assertEquals(date1.getTime(), date2.getTime());
+		assertThat(date1).isNotSameAs(date2).isEqualTo(date2);
+		assertThat(date1.getTime()).isEqualTo(date2.getTime());
 
 		Date date3 = null;
 
 		Date date4 = CloneUtils.clone(date3);
 
-		assertNull(date4);
+		assertThat(date4).isNull();
 	}
 
 	@Test
-	public void testCloneArray() {
+	void testCloneArray() {
 		String[] strArray1 = { "Chaine1", "Chaine2", "Chaine3" };
 
 		String[] strArray2 = CloneUtils.clone(strArray1);
 
-		assertNotSame(strArray1, strArray2);
-		assertArrayEquals(strArray1, strArray2);
+		assertThat(strArray1).isNotSameAs(strArray2).isEqualTo(strArray2);
 
 		String[] strArray3 = null;
 
 		String[] strArray4 = CloneUtils.clone(strArray3);
 
-		assertNull(strArray4);
+		assertThat(strArray4).isNull();
 	}
 }
