@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -27,21 +28,17 @@ import org.assertj.core.api.Assertions;
 import org.iglooproject.commons.io.ClassPathResourceUtil;
 import org.iglooproject.commons.io.Friend;
 import org.iglooproject.commons.io.internal.ClassPathResourceHelper;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-public class TestClassPathResourceUtil {
-
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+class TestClassPathResourceUtil {
 
 	/**
 	 * Last modified date for jar's resolved resources extracts jar last modified time
 	 */
 	@Test
-	public void lastModifiedJarResource() throws IOException {
-		File file = folder.newFile("file.jar");
+	void lastModifiedJarResource(@TempDir Path folder) throws IOException {
+		File file = folder.resolve("file.jar").toFile();
 		String zippedFileName = "text.txt";
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			ZipOutputStream stream = new ZipOutputStream(fos);
@@ -63,8 +60,8 @@ public class TestClassPathResourceUtil {
 	 * Classpath resource that resolves to 'file:*' url extracts target file last modified time
 	 */
 	@Test
-	public void lastModifiedFileResource() throws IOException {
-		File file = folder.newFile("myfile.jar");
+	void lastModifiedFileResource(@TempDir Path folder) throws IOException {
+		File file = folder.resolve("file.jar").toFile();
 		ClassPathResourceHelper helper = spy(ClassPathResourceHelper.class);
 
 		doReturn(new URL(String.format("file:%s", file.getAbsolutePath()))).when(helper).resolveUrl(any(), any());
@@ -74,7 +71,7 @@ public class TestClassPathResourceUtil {
 	}
 
 	@Test
-	public void lastModifiedNotExisting() {
+	void lastModifiedNotExisting() {
 		ClassPathResourceUtil rUtil = new ClassPathResourceUtil();
 		Assertions.assertThatCode(() -> rUtil.lastModified("classpath:notExisting.txt")).isInstanceOf(IOException.class);
 	}
@@ -83,7 +80,7 @@ public class TestClassPathResourceUtil {
 	 * Not 'classpath:*' url throws {@link IllegalArgumentException}
 	 */
 	@Test
-	public void lastModifiedFileNonClasspathUrl() throws IOException {
+	void lastModifiedFileNonClasspathUrl() throws IOException {
 		ClassPathResourceUtil rUtil = new ClassPathResourceUtil();
 		Assertions.assertThatCode(() -> rUtil.lastModified("fileResource")).isInstanceOf(IllegalArgumentException.class);
 	}
@@ -92,7 +89,7 @@ public class TestClassPathResourceUtil {
 	 * Obtain resource url from a classpath resource path (classpath:file/...)
 	 */
 	@Test
-	public void testResolveUrl() throws IOException {
+	void testResolveUrl() throws IOException {
 		ClassPathResourceHelper helper = new ClassPathResourceHelper();
 		URL url = helper.resolveUrl(getClass().getClassLoader(), "resource.txt");
 		assertThat(url).isNotNull();
@@ -103,7 +100,7 @@ public class TestClassPathResourceUtil {
 	 * Obtain resource url from a classpath resource path (classpath:/...)
 	 */
 	@Test
-	public void testResolveUrlSlash() throws IOException {
+	void testResolveUrlSlash() throws IOException {
 		ClassPathResourceHelper helper = new ClassPathResourceHelper();
 		URL url = helper.toUrl(getClass().getClassLoader(), "classpath:/resource.txt");
 		assertThat(url).isNotNull();
@@ -114,8 +111,8 @@ public class TestClassPathResourceUtil {
 	 * Open a stream from an URL
 	 */
 	@Test
-	public void openStream() throws IOException {
-		File file = folder.newFile("file.txt");
+	void openStream(@TempDir Path folder) throws IOException {
+		File file = folder.resolve("file.text").toFile();
 		String content = "content";
 		try (FileWriter fw = new FileWriter(file)) {
 			new BufferedWriter(fw).append(content).close();;
@@ -133,7 +130,7 @@ public class TestClassPathResourceUtil {
 	 * Extract content from a classpath resource
 	 */
 	@Test
-	public void asString() throws IOException {
+	void asString() throws IOException {
 		ClassPathResourceUtil rUtil = new ClassPathResourceUtil();
 		Assertions.assertThat(rUtil.asString("classpath:resource.txt", "UTF-8")).isEqualTo("resource.txt content");
 		Assertions.assertThat(rUtil.asUtf8String("classpath:resource.txt")).isEqualTo("resource.txt content");
@@ -143,7 +140,7 @@ public class TestClassPathResourceUtil {
 	 * Extract content from not existing resource
 	 */
 	@Test
-	public void asStringNotExisting() throws IOException {
+	void asStringNotExisting() throws IOException {
 		ClassPathResourceUtil rUtil = new ClassPathResourceUtil();
 		Assertions.assertThatCode(() -> rUtil.asString("classpath:notExisting.txt", "UTF-8")).isInstanceOf(IOException.class);
 		Assertions.assertThatCode(() -> rUtil.asUtf8String("classpath:notExisting.txt")).isInstanceOf(IOException.class);
@@ -153,7 +150,7 @@ public class TestClassPathResourceUtil {
 	 * Check behavior for not existing resource path
 	 */
 	@Test
-	public void testResolveUrlNotExisting() {
+	void testResolveUrlNotExisting() {
 		ClassPathResourceHelper helper = new ClassPathResourceHelper();
 		assertThatCode(() -> helper.resolveUrl(getClass().getClassLoader(), "notExisting.txt"))
 			.isInstanceOf(FileNotFoundException.class);
@@ -163,7 +160,7 @@ public class TestClassPathResourceUtil {
 	 * Behavior if URL protocol is not jar or file
 	 */
 	@Test
-	public void unknownProtocol() throws FileNotFoundException, MalformedURLException {
+	void unknownProtocol() throws FileNotFoundException, MalformedURLException {
 		ClassPathResourceHelper helper = mock(ClassPathResourceHelper.class);
 		given(helper.toUrl(any(), any())).willReturn(new URL("http://host/path"));
 		

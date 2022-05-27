@@ -1,20 +1,15 @@
 package org.iglooproject.test.commons.util.validator;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
-
 import org.iglooproject.commons.util.validator.AnyTldUrlValidator;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
-public class TestAnyTldUrlValidator {
+class TestAnyTldUrlValidator {
 	
-	@Parameters(name = "{index} - \"{0}\" expecting {1}")
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(new Object[][] {
 				{ "http://www.google.fr/test", true },
@@ -32,19 +27,14 @@ public class TestAnyTldUrlValidator {
 		});
 	}
 	
-	@Parameter(0)
-	public String url;
-	
-	@Parameter(1)
-	public boolean expectedValid;
-	
-	@Test
-	public void testValidation() {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testValidation(String url, boolean expectedValid) {
 		AnyTldUrlValidator validator = AnyTldUrlValidator.getInstance();
 		if (expectedValid) {
-			Assert.assertTrue(validator.isValid(url));
+			assertThat(validator.isValid(url)).isTrue();
 		} else {
-			Assert.assertFalse(validator.isValid(url));
+			assertThat(validator.isValid(url)).isFalse();
 		}
 	}
 

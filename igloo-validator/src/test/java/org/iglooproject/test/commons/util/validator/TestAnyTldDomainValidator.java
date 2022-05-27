@@ -1,20 +1,15 @@
 package org.iglooproject.test.commons.util.validator;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
-
 import org.iglooproject.commons.util.validator.AnyTldDomainValidator;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
-public class TestAnyTldDomainValidator {
+class TestAnyTldDomainValidator {
 	
-	@Parameters(name = "{index} - \"{0}\" expecting {1}")
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(new Object[][] {
 				{ "www.google.fr", true },
@@ -32,19 +27,14 @@ public class TestAnyTldDomainValidator {
 		});
 	}
 	
-	@Parameter(0)
-	public String domain;
-	
-	@Parameter(1)
-	public boolean expectedValid;
-	
-	@Test
-	public void testValidation() {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testValidation(String domain, boolean expectedValid) {
 		AnyTldDomainValidator validator = AnyTldDomainValidator.getInstance();
 		if (expectedValid) {
-			Assert.assertTrue(validator.isValid(domain));
+			assertThat(validator.isValid(domain)).isTrue();
 		} else {
-			Assert.assertFalse(validator.isValid(domain));
+			assertThat(validator.isValid(domain)).isFalse();
 		}
 	}
 }

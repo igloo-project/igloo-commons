@@ -8,20 +8,17 @@ import java.io.ObjectOutputStream;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
+import org.assertj.core.api.Assertions;
 import org.iglooproject.functional.Predicates2;
 import org.iglooproject.functional.SerializableFunction2;
 import org.iglooproject.functional.SerializablePredicate2;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-@RunWith(Parameterized.class)
-public class PredicateSerializableTest {
+class PredicateSerializableTest {
 
 	private static final SerializablePredicate2<Object> PREDICATE_SERIALIZABLE = new SerializablePredicate2<Object>() {
 		private static final long serialVersionUID = 1L;
@@ -39,7 +36,6 @@ public class PredicateSerializableTest {
 		}
 	};
 
-	@Parameters
 	public static Iterable<Predicate<?>> data() {
 		return ImmutableList.<Predicate<?>>builder()
 				.add(PREDICATE_SERIALIZABLE.and(PREDICATE_SERIALIZABLE))
@@ -80,12 +76,10 @@ public class PredicateSerializableTest {
 				.build();
 	}
 
-	@Parameter(0)
-	public Predicate<?> predicate;
-
-	@Test
-	public void testSerializable() {
-		doSerializeAndDeserialize(predicate);
+	@ParameterizedTest
+	@MethodSource("data")
+	void testSerializable(Predicate<?> predicate) {
+		Assertions.assertThatCode(() -> doSerializeAndDeserialize(predicate)).doesNotThrowAnyException();
 	}
 
 	@SuppressWarnings("unchecked")

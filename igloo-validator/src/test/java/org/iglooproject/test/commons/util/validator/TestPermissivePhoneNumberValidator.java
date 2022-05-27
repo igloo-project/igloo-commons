@@ -1,20 +1,15 @@
 package org.iglooproject.test.commons.util.validator;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
-
 import org.iglooproject.commons.util.validator.PermissivePhoneNumberValidator;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
-public class TestPermissivePhoneNumberValidator {
+class TestPermissivePhoneNumberValidator {
 
-	@Parameters(name = "{index} - \"{0}\" expecting {1}")
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(new Object[][] {
 				{ "+1 (555) 555-5555", true },
@@ -25,19 +20,14 @@ public class TestPermissivePhoneNumberValidator {
 		});
 	}
 	
-	@Parameter(0)
-	public String phoneNumber;
-	
-	@Parameter(1)
-	public boolean expectedValid;
-	
-	@Test
-	public void testValidation() {
+	@ParameterizedTest
+	@MethodSource("data")
+	void testValidation(String phoneNumber, boolean expectedValid) {
 		PermissivePhoneNumberValidator validator = PermissivePhoneNumberValidator.getInstance();
 		if (expectedValid) {
-			Assert.assertTrue(validator.isValid(phoneNumber));
+			assertThat(validator.isValid(phoneNumber)).isTrue();
 		} else {
-			Assert.assertFalse(validator.isValid(phoneNumber));
+			assertThat(validator.isValid(phoneNumber)).isFalse();
 		}
 	}
 }
