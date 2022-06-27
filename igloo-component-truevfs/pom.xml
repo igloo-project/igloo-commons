@@ -5,32 +5,13 @@
 	<parent>
 		<groupId>org.iglooproject.components</groupId>
 		<artifactId>components</artifactId>
-		<version>4.1.0</version>
+		<version>4.2.0</version>
 	</parent>
 
 	<artifactId>igloo-component-truevfs</artifactId>
 
 	<name>Igloo - Component - TrueVFS</name>
 	<description>Truezip</description>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.iglooproject</groupId>
-				<artifactId>dependencies-tools</artifactId>
-				<version>${igloo.igloo-maven.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.iglooproject</groupId>
-				<artifactId>dependencies-logging</artifactId>
-				<version>${igloo.igloo-maven.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -45,6 +26,11 @@
 			<groupId>net.java.truevfs</groupId>
 			<artifactId>truevfs-kernel-spec</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 	
 	<build>
@@ -55,4 +41,30 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-tools</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-wicket</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.iglooproject</groupId>
+				<artifactId>dependencies-logging</artifactId>
+				<version>${igloo.igloo-maven.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

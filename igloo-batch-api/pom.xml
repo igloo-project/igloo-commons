@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.iglooproject.components</groupId>
 		<artifactId>components</artifactId>
-		<version>4.1.0</version>
+		<version>4.2.0</version>
 	</parent>
 
 	<artifactId>igloo-batch-api</artifactId>
@@ -68,7 +68,7 @@
 		<dependency>
 			<groupId>org.iglooproject.components</groupId>
 			<artifactId>bindgen-functional</artifactId>
-			<version>4.1.0</version>
+			<version>4.2.0</version>
 		</dependency>
 	</dependencies>
 	

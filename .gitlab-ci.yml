@@ -39,11 +39,3 @@ maven-deploy:
     - /^hf-.*$/
   tags:
     - docker
-
-trigger:
-  stage: trigger
-  trigger:
-    project: igloo-project/igloo-parent
-    branch: $CI_COMMIT_BRANCH
-  only:
-    - /^dev$/
