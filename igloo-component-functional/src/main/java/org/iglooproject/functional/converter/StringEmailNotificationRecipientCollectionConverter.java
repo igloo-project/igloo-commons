@@ -21,8 +21,8 @@ import com.google.common.collect.Lists;
 /**
  * Allows you to transform an email list into a list of notification recipients
  * 
- * example : Kobalt email<example@kobalt.fr>;other@kobalt.fr
- * result : Notification(email = "example@kobalt.fr", fullName = "Kobalt email"), Notification(email = "other@kobalt.fr", fullName = null)
+ * example : Kobalt {@literal email<example@kobalt.fr>;other@kobalt.fr}
+ * result : {@literal Notification(email = "example@kobalt.fr", fullName = "Kobalt email"), Notification(email = "other@kobalt.fr", fullName = null)}
  */
 public class StringEmailNotificationRecipientCollectionConverter<T, C extends Collection<T>> extends SerializableConverter2<String, List<INotificationRecipient>> {
 
@@ -77,13 +77,13 @@ public class StringEmailNotificationRecipientCollectionConverter<T, C extends Co
 			label = label != null ? label.trim() : label;
 			email = email != null ? email.trim() : email;
 			
-			if (!StringUtils.isBlank(email) && StringUtils.isBlank(label)) {
+			if (StringUtils.isBlank(email) && !StringUtils.isBlank(label)) {
 				// if the label is alone, we consider the value as an email
 				email = label;
 				label = null;
 			}
 			
-			if (StringUtils.isBlank(email)) {
+			if (!StringUtils.isBlank(email)) {
 				collection.add(new SimpleRecipient(locale, email, label));
 			}
 		}
@@ -96,12 +96,12 @@ public class StringEmailNotificationRecipientCollectionConverter<T, C extends Co
 		List<String> result = Lists.newArrayList();
 		
 		for (INotificationRecipient notificationRecipient : value) {
-			if (!StringUtils.isBlank(notificationRecipient.getEmail())) {
+			if (StringUtils.isBlank(notificationRecipient.getEmail())) {
 				continue;
 			}
 			result.add(
-				StringUtils.isBlank(notificationRecipient.getFullName()) ?
-				notificationRecipient.getFullName() + " <" + notificationRecipient.getEmail() + ">" :
+				!StringUtils.isBlank(notificationRecipient.getFullName()) ?
+				notificationRecipient.getFullName() + "<" + notificationRecipient.getEmail() + ">" :
 				notificationRecipient.getEmail()
 			);
 		}
@@ -109,23 +109,4 @@ public class StringEmailNotificationRecipientCollectionConverter<T, C extends Co
 		return joiner.join(result);
 	}
 
-	/**
-	 * Workaround sonar/findbugs - https://github.com/google/guava/issues/1858
-	 * Guava Converter overrides only equals to add javadoc, but findbugs warns about non coherent equals/hashcode
-	 * possible issue.
-	 */
-	@Override
-	public boolean equals(Object object) {
-		return super.equals(object);
-	}
-
-	/**
-	 * Workaround sonar/findbugs - see #equals(Object)
-	 */
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
 }
-
