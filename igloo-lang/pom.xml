@@ -52,11 +52,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.iglooproject.components</groupId>
-			<artifactId>igloo-component-export</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.bindgen</groupId>
 			<artifactId>bindgen</artifactId>
 		</dependency>
