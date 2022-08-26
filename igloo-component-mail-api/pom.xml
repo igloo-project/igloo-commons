@@ -8,20 +8,17 @@
 		<version>4.3.0</version>
 	</parent>
 
-	<artifactId>igloo-security-api</artifactId>
+	<artifactId>igloo-component-mail-api</artifactId>
 
-	<name>Igloo - Security API</name>
-	<description>Security API.</description>
+	<name>Igloo - Component - Mail API</name>
+	<description>Mail API</description>
 
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
-
-	<dependencies>
-	</dependencies>
-	
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -29,4 +26,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
+
