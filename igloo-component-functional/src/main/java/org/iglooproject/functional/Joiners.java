@@ -15,8 +15,9 @@ public final class Joiners {
 	private static final Joiner MIDDOT_SPACE = Joiner.on(" · ").skipNulls();
 	private static final Joiner DOT = Joiner.on(".").skipNulls();
 	private static final Joiner SLASH = Joiner.on("/").skipNulls();
+	private static final Joiner SLASH_SPACE = Joiner.on(" / ").skipNulls();
 	private static final Joiner COMMA = Joiner.on(", ").skipNulls();
-	
+
 	public static Joiner onSpace() {
 		return SPACE;
 	}
@@ -36,7 +37,7 @@ public final class Joiners {
 	public static Joiner onHyphen() {
 		return HYPHEN;
 	}
-	
+
 	public static Joiner onHyphenSpace() {
 		return HYPHEN_SPACE;
 	}
@@ -51,6 +52,10 @@ public final class Joiners {
 
 	public static Joiner onSlash() {
 		return SLASH;
+	}
+
+	public static Joiner onSlashSpace() {
+		return SLASH_SPACE;
 	}
 
 	public static Joiner onComma() {
@@ -74,6 +79,7 @@ public final class Joiners {
 		private static final SerializableFunction2<Object, Joiner> MIDDOT_SPACE = o -> Joiners.MIDDOT_SPACE;
 		private static final SerializableFunction2<Object, Joiner> DOT = o -> Joiners.DOT;
 		private static final SerializableFunction2<Object, Joiner> SLASH = o -> Joiners.SLASH;
+		private static final SerializableFunction2<Object, Joiner> SLASH_SPACE = o -> Joiners.SLASH_SPACE;
 		private static final SerializableFunction2<Object, Joiner> COMMA = o -> Joiners.COMMA;
 		
 		public static SerializableFunction2<Object, Joiner> onSpace() {
@@ -95,7 +101,7 @@ public final class Joiners {
 		public static SerializableFunction2<Object, Joiner> onHyphen() {
 			return HYPHEN;
 		}
-		
+
 		public static SerializableFunction2<Object, Joiner> onHyphenSpace() {
 			return HYPHEN_SPACE;
 		}
@@ -110,6 +116,10 @@ public final class Joiners {
 
 		public static SerializableFunction2<Object, Joiner> onSlash() {
 			return SLASH;
+		}
+
+		public static SerializableFunction2<Object, Joiner> onSlashSpace() {
+			return SLASH_SPACE;
 		}
 
 		public static SerializableFunction2<Object, Joiner> onComma() {
