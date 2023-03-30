@@ -19,8 +19,6 @@ import org.apache.commons.io.filefilter.NameFileFilter;
 
 import com.google.common.collect.Lists;
 
-import net.java.truevfs.access.TFile;
-
 public final class FileUtils {
 	
 	public static File getFile(File directory, String name) {
@@ -46,7 +44,7 @@ public final class FileUtils {
 		if (filesPaths != null) {
 			Arrays.sort(filesPaths);
 			for (int i = 0; i < filesPaths.length; i++) {
-				TFile file = new TFile(FilenameUtils.concat(directory.getAbsolutePath(), filesPaths[i]));
+				File file = new File(FilenameUtils.concat(directory.getAbsolutePath(), filesPaths[i]));
 				if (file.canRead()) {
 					files.add(file);
 				}

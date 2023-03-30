@@ -27,8 +27,6 @@ import org.mockito.Mockito;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 
-import net.java.truevfs.access.TFile;
-
 class TestFileUtils {
 
 	private static final String DIRECTORY = "src/test/resources/FileUtils/";
@@ -54,19 +52,6 @@ class TestFileUtils {
 		File archiveFile = new File(ZIP_FILE_PATH);
 		
 		assertThat(archiveFile).exists().isNotEmpty();
-		
-		TFile archiveDirectory = new TFile(archiveFile.getAbsolutePath());
-		
-		assertThat(archiveDirectory).isDirectory();
-		
-		file = FileUtils.getFile(archiveDirectory, "test1.xls");
-		assertThat(file).exists();
-		
-		file = FileUtils.getFile(archiveDirectory, "test2.doc");
-		assertThat(file).exists();
-		
-		file = FileUtils.getFile(archiveDirectory, "test3");
-		assertThat(file).exists();
 	}
 
 	/**
@@ -75,8 +60,8 @@ class TestFileUtils {
 	@Test
 	void testGetError() throws IOException {
 		File archiveFile = new File(ZIP_FILE_PATH);
-		TFile archiveDirectory = new TFile(archiveFile.getAbsolutePath());
-		assertThatCode(() -> FileUtils.getFile(archiveDirectory, "test4.txt")).isInstanceOf(IllegalArgumentException.class);
+		File archiveDirectory = new File(archiveFile.getAbsolutePath());
+		assertThatCode(() -> FileUtils.getFile(archiveDirectory, "test4.txt")).isInstanceOf(IllegalStateException.class);
 	}
 
 	@Test
@@ -98,22 +83,6 @@ class TestFileUtils {
 		File archiveFile = new File(ZIP_FILE_PATH);
 		
 		assertThat(archiveFile).exists().isNotEmpty();
-		
-		TFile archiveDirectory = new TFile(archiveFile.getAbsolutePath());
-		
-		assertThat(archiveDirectory).isDirectory();
-		
-		files = FileUtils.list(archiveDirectory, new NameFileFilter("test1.xls"));
-		assertThat(files, FileAssert.class).singleElement().exists();
-		
-		files = FileUtils.list(archiveDirectory, new NameFileFilter("test2.doc"));
-		assertThat(files, FileAssert.class).singleElement().exists();
-		
-		files = FileUtils.list(archiveDirectory, new NameFileFilter("test3"));
-		assertThat(files, FileAssert.class).singleElement().exists();
-		
-		files = FileUtils.list(archiveDirectory, new NameFileFilter("test4.txt"));
-		assertThat(files).isEmpty();
 	}
 
 	/**
@@ -122,7 +91,7 @@ class TestFileUtils {
 	@Test
 	void testListNotExisting() {
 		// Test sur une archive non-existante
-		File archiveDirectory = new TFile("foo.bar");
+		File archiveDirectory = new File("foo.bar");
 		
 		NameFileFilter filter = new NameFileFilter("abcdef");
 		assertThatCode(() -> FileUtils.list(archiveDirectory, filter))
