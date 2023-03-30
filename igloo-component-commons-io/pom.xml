@@ -55,18 +55,6 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>net.java.truevfs</groupId>
-			<artifactId>truevfs-access</artifactId>
-		</dependency>
-		
-		<!-- Runtime stack : truevfs jar & zip -->
-		<dependency>
-			<groupId>net.java.truevfs</groupId>
-			<artifactId>truevfs-profile-base</artifactId>
-			<type>pom</type>
-			<scope>runtime</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
