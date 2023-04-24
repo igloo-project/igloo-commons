@@ -37,5 +37,6 @@ maven-deploy:
     - /^ft-.*-deploy$/
     - /^rl-.*$/
     - /^hf-.*$/
+    - igloo-boot
   tags:
     - docker
