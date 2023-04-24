@@ -1,7 +1,7 @@
 ---
 
 image:
-  name: maven:3.8-openjdk-11
+  name: maven:3.8-openjdk-17
 
 variables:
   MAVEN_OPTS: "-Xmx256m"
@@ -15,7 +15,7 @@ maven-build:
   stage: build
   environment: staging
   script:
-    - "mvn package"
+    - "mvn -U package"
   tags:
     - docker
   artifacts:
@@ -30,7 +30,7 @@ maven-deploy:
   stage: deploy
   environment: staging
   script:
-    - "mvn deploy -DperformRelease -DskipTests"
+    - "mvn -U deploy -DperformRelease -DskipTests"
   only:
     - /^main$/
     - /^dev$/
