@@ -10,8 +10,8 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.filefilter.DelegateFileFilter;
@@ -199,10 +199,10 @@ class TestFileUtils {
 		File file2 = new File(subFolder, "file2");
 		assertThat(file1.createNewFile()).isTrue();
 		
-		Date date = waitSomeTime();
+		Instant instant = waitSomeTime();
 		assertThat(file2.createNewFile()).isTrue();
 		
-		FileUtils.cleanDirectory(subFolder, date);
+		FileUtils.cleanDirectory(subFolder, instant);
 		
 		assertThat(folder.getRoot()).as("Parent folder must be kept").exists();
 		assertThat(subFolder).as("Cleaned folder must be kept").exists();
@@ -224,11 +224,11 @@ class TestFileUtils {
 		assertThat(file1.createNewFile()).isTrue();
 		assertThat(file2.createNewFile()).isTrue();
 		
-		Date date = waitSomeTime();
+		Instant instant = waitSomeTime();
 		assertThat(dir1.mkdirs()).isTrue();
 		assertThat(file3.mkdirs()).isTrue();
 		
-		FileUtils.cleanDirectory(subFolder, date);
+		FileUtils.cleanDirectory(subFolder, instant);
 		
 		assertThat(folder.getRoot()).as("Parent folder must be kept").exists();
 		assertThat(subFolder).as("Cleaned folder must be kept").exists();
@@ -251,13 +251,13 @@ class TestFileUtils {
 		assertThat(file1.createNewFile()).isTrue();
 		assertThat(file2.createNewFile()).isTrue();
 		
-		Date date = waitSomeTime();
+		Instant instant = waitSomeTime();
 		// update file1 lastModification
 		try (FileOutputStream fos = new FileOutputStream(file1)) {
 			fos.write(1000);
 		}
 		
-		FileUtils.cleanDirectory(subFolder, date);
+		FileUtils.cleanDirectory(subFolder, instant);
 		
 		assertThat(folder.getRoot()).as("Parent folder must be kept").exists();
 		assertThat(subFolder).as("Cleaned folder must be kept").exists();
@@ -424,11 +424,11 @@ class TestFileUtils {
 		assertThat(files).hasSize(3).containsExactly(file1, file2, file3);
 	}
 
-	private Date waitSomeTime() throws InterruptedException {
+	private Instant waitSomeTime() throws InterruptedException {
 		Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(2));
-		Date date = new Date();
+		Instant instant = Instant.now();
 		// under 2000ms, delta-time is not high enough to ensure that file2 last modification date is late enough
 		Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(2));
-		return date;
+		return instant;
 	}
 }

@@ -1,11 +1,10 @@
 package org.iglooproject.commons.util.report;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.bindgen.Bindable;
-import org.iglooproject.commons.util.CloneUtils;
 
 @Bindable
 public class BatchReportItem implements Serializable {
@@ -18,7 +17,7 @@ public class BatchReportItem implements Serializable {
 
 	private Exception exception;
 
-	private Date date;
+	private Instant instant;
 
 	protected BatchReportItem() {
 	}
@@ -26,7 +25,7 @@ public class BatchReportItem implements Serializable {
 	public BatchReportItem(BatchReportItemSeverity severity, String message) {
 		setSeverity(severity);
 		setMessage(message);
-		setDate(new Date());
+		setInstant(Instant.now());
 	}
 
 	public BatchReportItem(BatchReportItemSeverity severity, String message,
@@ -59,19 +58,19 @@ public class BatchReportItem implements Serializable {
 		return exception;
 	}
 
-	public void setDate(Date date) {
-		this.date = CloneUtils.clone(date);
+	public Instant getInstant() {
+		return instant;
 	}
 
-	public Date getDate() {
-		return CloneUtils.clone(date);
+	public void setInstant(Instant instant) {
+		this.instant = instant;
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
 				.append("severity", severity.name())
-				.append("date", date)
+				.append("instant", instant)
 				.append("message", message)
 				.build();
 	}

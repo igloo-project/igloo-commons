@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
@@ -114,7 +116,7 @@ public final class FileUtils {
 	 * @param onlyCleanFilesOlderThanThisDate
 	 * @throws IOException
 	 */
-	public static void cleanDirectory(File directory, Date onlyCleanFilesOlderThanThisDate) throws IOException {
+	public static void cleanDirectory(File directory, Instant onlyCleanFilesOlderThanThisDate) throws IOException {
 		if (directory == null) {
 			throw new IllegalArgumentException(String.format("Null directory is not allowed (olderThanDate: %s)",
 					onlyCleanFilesOlderThanThisDate));
@@ -136,7 +138,9 @@ public final class FileUtils {
 
 		IOException exception = null;
 		for (File file : files) {
-			if (onlyCleanFilesOlderThanThisDate == null || onlyCleanFilesOlderThanThisDate.after(new Date(file.lastModified()))) {
+			BasicFileAttributes fileAttributes = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
+			
+			if (onlyCleanFilesOlderThanThisDate == null || onlyCleanFilesOlderThanThisDate.isAfter(fileAttributes.lastModifiedTime().toInstant())) {
 				try {
 					org.apache.commons.io.FileUtils.forceDelete(file);
 				} catch (IOException ioe) {
