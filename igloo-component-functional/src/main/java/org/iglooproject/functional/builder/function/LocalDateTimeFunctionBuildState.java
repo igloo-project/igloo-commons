@@ -1,10 +1,10 @@
 package org.iglooproject.functional.builder.function;
 
+import java.time.LocalDateTime;
 
-public interface NumberFunctionBuildState
+public interface LocalDateTimeFunctionBuildState
 		<
 		TBuildResult,
-		TNumber extends Number,
 		TBooleanState extends BooleanFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TDateState extends DateFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TLocalDateState extends LocalDateFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
@@ -15,14 +15,6 @@ public interface NumberFunctionBuildState
 		TBigDecimalState extends BigDecimalFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TStringState extends StringFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>
 		>
-		extends FunctionBuildState<TBuildResult, TNumber, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState> {
-
-	TLongState toLong();
-	
-	TIntegerState toInteger();
-	
-	TDoubleState toDouble();
-
-	TBigDecimalState toBigDecimal();
+		extends FunctionBuildState<TBuildResult, LocalDateTime, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState> {
 
 }

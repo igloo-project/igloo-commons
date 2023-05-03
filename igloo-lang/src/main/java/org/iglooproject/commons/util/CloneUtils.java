@@ -52,7 +52,9 @@ public final class CloneUtils {
 	 * 
 	 * @param calendar à clôner
 	 * @return clône du calendar passé en paramètre
+	 * @deprecated Use java.time instead.
 	 */
+	@Deprecated
 	public static Calendar clone(Calendar calendar) {
 		if (calendar == null) {
 			return null;

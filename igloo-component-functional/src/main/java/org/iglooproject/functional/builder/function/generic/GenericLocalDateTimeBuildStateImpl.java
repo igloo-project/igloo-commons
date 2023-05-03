@@ -1,6 +1,6 @@
 package org.iglooproject.functional.builder.function.generic;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.iglooproject.functional.Functions2;
 import org.iglooproject.functional.builder.function.BigDecimalFunctionBuildState;
@@ -13,26 +13,26 @@ import org.iglooproject.functional.builder.function.LocalDateTimeFunctionBuildSt
 import org.iglooproject.functional.builder.function.LongFunctionBuildState;
 import org.iglooproject.functional.builder.function.StringFunctionBuildState;
 
-public abstract class GenericDateBuildStateImpl
+public abstract class GenericLocalDateTimeBuildStateImpl
 		<
 		TBuildResult,
-		TStateSwitcher extends FunctionBuildStateSwitcher<TBuildResult, Date, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
+		TStateSwitcher extends FunctionBuildStateSwitcher<TBuildResult, LocalDateTime, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TBooleanState extends BooleanFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
-		TDateState extends DateFunctionBuildState<TBuildResult, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
+		TDateState extends DateFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TLocalDateState extends LocalDateFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
-		TLocalDateTimeState extends LocalDateTimeFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
+		TLocalDateTimeState extends LocalDateTimeFunctionBuildState<TBuildResult, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TIntegerState extends IntegerFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TLongState extends LongFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TDoubleState extends DoubleFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TBigDecimalState extends BigDecimalFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>,
 		TStringState extends StringFunctionBuildState<?, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>
 		>
-		extends GenericFunctionBuildStateImpl<TBuildResult, Date, TStateSwitcher, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>
-		implements DateFunctionBuildState<TBuildResult, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState> {
+		extends GenericFunctionBuildStateImpl<TBuildResult, LocalDateTime, TStateSwitcher, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState>
+		implements LocalDateTimeFunctionBuildState<TBuildResult, TBooleanState, TDateState, TLocalDateState, TLocalDateTimeState, TIntegerState, TLongState, TDoubleState, TBigDecimalState, TStringState> {
 	
 	@Override
-	public TBuildResult withDefault(final Date defaultValue) {
-		return toDate(Functions2.defaultValue(defaultValue)).build();
+	public TBuildResult withDefault(final LocalDateTime defaultValue) {
+		return toLocalDateTime(Functions2.defaultValue(defaultValue)).build();
 	}
 
 }
