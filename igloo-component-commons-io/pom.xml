@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.iglooproject.components</groupId>
 		<artifactId>components</artifactId>
-		<version>5.9.0</version>
+		<version>5.10.0</version>
 	</parent>
 
 	<artifactId>igloo-component-commons-io</artifactId>
@@ -54,18 +54,6 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.java.truevfs</groupId>
-			<artifactId>truevfs-access</artifactId>
-		</dependency>
-		
-		<!-- Runtime stack : truevfs jar & zip -->
-		<dependency>
-			<groupId>net.java.truevfs</groupId>
-			<artifactId>truevfs-profile-base</artifactId>
-			<type>pom</type>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
