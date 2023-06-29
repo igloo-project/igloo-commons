@@ -5,16 +5,17 @@
 	<parent>
 		<groupId>org.iglooproject</groupId>
 		<artifactId>plugins-all</artifactId>
-		<version>6.0.0-Alpha1</version>
+		<version>6.0.0-Alpha3</version>
 	</parent>
 
 	<groupId>org.iglooproject.components</groupId>
 	<artifactId>components</artifactId>
-	<version>6.0.0-Alpha1</version>
+	<version>6.0.0-Alpha3</version>
+
 	<packaging>pom</packaging>
 
 	<properties>
-		<igloo.igloo-maven.version>6.0.0-Alpha1</igloo.igloo-maven.version>
+		<igloo.igloo-maven.version>6.0.0-Alpha3</igloo.igloo-maven.version>
 	</properties>
 
 	<modules>
@@ -22,7 +23,6 @@
 		<module>igloo-component-commons-io</module>
 		<module>igloo-component-functional</module>
 		<module>igloo-component-mail-api</module>
-		<module>igloo-component-truevfs</module>
 		<module>igloo-collections</module>
 		<module>igloo-context</module>
 		<module>igloo-lang</module>
