@@ -15,6 +15,7 @@
 
 	<properties>
 		<igloo.processors>${igloo.processor.bindgen}</igloo.processors>
+		<processor.test.skip>true</processor.test.skip>
 	</properties>
 
 	<dependencyManagement>
