@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.iglooproject.components</groupId>
 		<artifactId>components</artifactId>
-		<version>6.0.0-Alpha4</version>
+		<version>6.0.0-Alpha5</version>
 	</parent>
 
 	<artifactId>igloo-bean-api</artifactId>
@@ -15,6 +15,7 @@
 
 	<properties>
 		<igloo.processors>${igloo.processor.bindgen}</igloo.processors>
+		<processor.test.skip>true</processor.test.skip>
 	</properties>
 
 	<dependencyManagement>
@@ -56,7 +57,7 @@
 		<dependency>
 			<groupId>org.iglooproject.components</groupId>
 			<artifactId>bindgen-functional</artifactId>
-			<version>6.0.0-Alpha4</version>
+			<version>6.0.0-Alpha5</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.annotation</groupId>

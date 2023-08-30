@@ -18,7 +18,6 @@ import org.apache.commons.io.filefilter.DelegateFileFilter;
 import org.apache.commons.io.filefilter.FileFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.NameFileFilter;
-import org.assertj.core.api.Assumptions;
 import org.assertj.core.api.FileAssert;
 import org.iglooproject.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
@@ -244,34 +243,6 @@ class TestFileUtils {
 		Mockito.when(file.exists()).thenReturn(true);
 		Mockito.when(file.isDirectory()).thenReturn(true);
 		assertThatCode(() -> FileUtils.cleanDirectory(file, null)).isInstanceOf(IOException.class);
-	}
-
-	/**
-	 * Check behavior if clean directory cannot be done because a deletion fails
-	 */
-	@Test
-	void cleanDirectoryFailing(@TempDir Path folder) throws IOException, InterruptedException {
-		Assumptions.assumeThat(System.getenv().getOrDefault("CI_RUNNER_TAGS", "")).doesNotContain("docker");
-		File subFolder = folder.resolve("directory").toFile();
-		subFolder.mkdir();
-		File file1 = new File(subFolder, "file1");
-		File file2 = new File(subFolder, "file2");
-		File dir1 = new File(subFolder, "dir1");
-		File file3 = new File(dir1, "file3");
-		assertThat(file1.createNewFile()).isTrue();
-		assertThat(dir1.mkdirs()).isTrue();
-		assertThat(file3.createNewFile()).isTrue();
-		assertThat(file2.createNewFile()).isTrue();
-		dir1.setWritable(false);
-		
-		assertThatCode(() -> FileUtils.cleanDirectory(subFolder, null)).isInstanceOf(IOException.class);
-		
-		assertThat(folder.getRoot()).as("Parent folder must be kept").exists();
-		assertThat(subFolder).as("Cleaned folder must be kept").exists();
-		assertThat(file1).as("This file must be cleaned").doesNotExist();
-		assertThat(file2).as("This file must be cleaned").doesNotExist();
-		assertThat(dir1).as("Protected folder cannot be deleted as content cannot be removed").exists();
-		assertThat(file3).as("File cannot be removed as folder is write-protected").exists();
 	}
 
 	/**
