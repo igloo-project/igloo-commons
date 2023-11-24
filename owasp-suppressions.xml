@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+   <suppress>
+      <notes><![CDATA[
+      file name: jackson-databind-2.14.1.jar
+
+      This vulnerability is a DOS when serializing cyclic objects. It is not reachable by external attackers.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
+      <cve>CVE-2023-35116</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: spring-security-crypto-5.8.0.jar
+
+      This is a dependency verison mismatch. Only spring-security < 5.3.3 is affected.
+
+      Encryptors.queryableText is not used.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-crypto@.*$</packageUrl>
+      <vulnerabilityName>CVE-2020-5408</vulnerabilityName>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: spring-web-5.3.24.jar
+
+      This vulnerability implies httpinvoker usage. We do not use httpinvoker.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-web@.*$</packageUrl>
+      <cve>CVE-2016-1000027</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: wicket-core-9.12.0.jar: jquery-1.12.4.js
+
+      This is a dependency version mismatch. We use jquery 3.6 that is not affected by vulnerability.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+      <cve>CVE-2015-9251</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: wicket-core-9.12.0.jar: jquery-1.12.4.js
+
+      This is a dependency version mismatch. We use jquery 3.6 that is not affected by vulnerability.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+      <cve>CVE-2019-11358</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: wicket-core-9.12.0.jar: jquery-1.12.4.js
+
+      This is a dependency version mismatch. We use jquery 3.6 that is not affected by vulnerability.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+      <cve>CVE-2020-11022</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: wicket-core-9.12.0.jar: jquery-1.12.4.js
+
+      This is a dependency version mismatch. We use jquery 3.6 that is not affected by vulnerability.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+      <cve>CVE-2020-11023</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: wicket-core-9.12.0.jar: jquery-1.12.4.js
+
+      This is a dependency version mismatch. We use jquery 3.6 that is not affected by vulnerability.
+      ]]></notes>
+      <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+      <vulnerabilityName>jQuery 1.x and 2.x are End-of-Life and no longer receiving security updates</vulnerabilityName>
+   </suppress>
+</suppressions>
