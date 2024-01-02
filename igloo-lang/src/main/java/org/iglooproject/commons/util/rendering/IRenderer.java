@@ -8,7 +8,6 @@ import java.util.Locale;
  * of implementing this. This class is primarily intended to serve as a wicket-independent base.
  */
 public interface IRenderer<T> {
-	
-	String render(T value, Locale locale);
 
+    String render(T value, Locale locale);
 }

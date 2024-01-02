@@ -7,10 +7,9 @@ import org.iglooproject.commons.io.internal.ClassPathResourceHelper;
  */
 public class Friend {
 
-	private Friend() {}
+    private Friend() {}
 
-	public static ClassPathResourceUtil classPathResourceUtil(ClassLoader classLoader, ClassPathResourceHelper helper) {
-		return new ClassPathResourceUtil(classLoader, helper);
-	}
-
+    public static ClassPathResourceUtil classPathResourceUtil(ClassLoader classLoader, ClassPathResourceHelper helper) {
+        return new ClassPathResourceUtil(classLoader, helper);
+    }
 }

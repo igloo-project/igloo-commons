@@ -9,14 +9,13 @@ import org.iglooproject.components.bindgen.JavaBindings;
 @Bindable
 public class TriggerJavaBindings {
 
-	private JavaBindings bindings;
+    private JavaBindings bindings;
 
-	public JavaBindings getBindings() {
-		return bindings;
-	}
+    public JavaBindings getBindings() {
+        return bindings;
+    }
 
-	public void setBindings(JavaBindings bindings) {
-		this.bindings = bindings;
-	}
-
+    public void setBindings(JavaBindings bindings) {
+        this.bindings = bindings;
+    }
 }
