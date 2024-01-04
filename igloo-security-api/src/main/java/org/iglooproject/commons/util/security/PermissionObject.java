@@ -9,9 +9,8 @@ import java.lang.annotation.Target;
 @Target(PARAMETER)
 @Retention(RUNTIME)
 public @interface PermissionObject {
-	
-	String DEFAULT_PERMISSION_OBJECT_NAME = "permissionObject";
-	
-	String value() default DEFAULT_PERMISSION_OBJECT_NAME;
 
+  String DEFAULT_PERMISSION_OBJECT_NAME = "permissionObject";
+
+  String value() default DEFAULT_PERMISSION_OBJECT_NAME;
 }
