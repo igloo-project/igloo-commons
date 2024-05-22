@@ -10,7 +10,7 @@
 
 	<groupId>org.iglooproject.components</groupId>
 	<artifactId>components</artifactId>
-	<version>5.17.0</version>
+	<version>5.17.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
