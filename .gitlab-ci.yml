@@ -35,11 +35,9 @@ maven-deploy:
     - /^main$/
     - /^dev$/
     - /^ft-.*-deploy$/
-    - /^rl-.*$/
     - /^hf-.*$/
     - igloo-boot
     - igloo-boot-dev
-    - /^igloo-boot-rl-.*$/
     - /^igloo-boot-hf-.*$/
   tags:
     - docker
