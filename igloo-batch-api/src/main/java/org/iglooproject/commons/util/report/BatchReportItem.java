@@ -2,76 +2,73 @@ package org.iglooproject.commons.util.report;
 
 import java.io.Serializable;
 import java.time.Instant;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.bindgen.Bindable;
 
 @Bindable
 public class BatchReportItem implements Serializable {
 
-	private static final long serialVersionUID = -8250079955023459814L;
+  private static final long serialVersionUID = -8250079955023459814L;
 
-	private String message;
+  private String message;
 
-	private BatchReportItemSeverity severity;
+  private BatchReportItemSeverity severity;
 
-	private Exception exception;
+  private Exception exception;
 
-	private Instant instant;
+  private Instant instant;
 
-	protected BatchReportItem() {
-	}
+  protected BatchReportItem() {}
 
-	public BatchReportItem(BatchReportItemSeverity severity, String message) {
-		setSeverity(severity);
-		setMessage(message);
-		setInstant(Instant.now());
-	}
+  public BatchReportItem(BatchReportItemSeverity severity, String message) {
+    setSeverity(severity);
+    setMessage(message);
+    setInstant(Instant.now());
+  }
 
-	public BatchReportItem(BatchReportItemSeverity severity, String message,
-			Exception e) {
-		this(severity, message);
-		setException(e);
-	}
+  public BatchReportItem(BatchReportItemSeverity severity, String message, Exception e) {
+    this(severity, message);
+    setException(e);
+  }
 
-	public String getMessage() {
-		return message;
-	}
+  public String getMessage() {
+    return message;
+  }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-	public BatchReportItemSeverity getSeverity() {
-		return severity;
-	}
+  public BatchReportItemSeverity getSeverity() {
+    return severity;
+  }
 
-	public void setSeverity(BatchReportItemSeverity severity) {
-		this.severity = severity;
-	}
+  public void setSeverity(BatchReportItemSeverity severity) {
+    this.severity = severity;
+  }
 
-	public void setException(Exception exception) {
-		this.exception = exception;
-	}
+  public void setException(Exception exception) {
+    this.exception = exception;
+  }
 
-	public Exception getException() {
-		return exception;
-	}
+  public Exception getException() {
+    return exception;
+  }
 
-	public Instant getInstant() {
-		return instant;
-	}
+  public Instant getInstant() {
+    return instant;
+  }
 
-	public void setInstant(Instant instant) {
-		this.instant = instant;
-	}
+  public void setInstant(Instant instant) {
+    this.instant = instant;
+  }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this)
-				.append("severity", severity.name())
-				.append("instant", instant)
-				.append("message", message)
-				.build();
-	}
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+        .append("severity", severity.name())
+        .append("instant", instant)
+        .append("message", message)
+        .build();
+  }
 }
