@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 public interface IDateTimePattern extends Serializable {
 
-	String getKey();
+  String getKey();
 
-	static IDateTimePattern getShortDateTime() {
-		return null;
-	}
-
+  static IDateTimePattern getShortDateTime() {
+    return null;
+  }
 }
