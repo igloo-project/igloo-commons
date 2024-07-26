@@ -15,6 +15,7 @@ maven-build:
   stage: build
   environment: staging
   script:
+    - "mvn spotless:check"
     - "mvn package"
   tags:
     - docker
@@ -35,7 +36,6 @@ maven-deploy:
     - /^main$/
     - /^dev$/
     - /^ft-.*-deploy$/
-    - /^rl-.*$/
     - /^hf-.*$/
   tags:
     - docker
