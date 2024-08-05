@@ -71,7 +71,10 @@ public enum MediaType {
   VIDEO_ANY("video/*"),
 
   // Audio
-  AUDIO_ANY("audio/*");
+  AUDIO_ANY("audio/*"),
+  VIDEO_WEBM("video/webm", "webm"),
+  VIDEO_MP4("video/mp4", "mp4"),
+  VIDEO_MOV("video/quicktime", "mov");
 
   private String primaryMimeType;
 
