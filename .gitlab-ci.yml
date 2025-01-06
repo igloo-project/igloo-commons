@@ -32,10 +32,10 @@ maven-deploy:
   environment: staging
   script:
     - "mvn deploy -DperformRelease -DskipTests"
-  only:
-    - /^main$/
-    - /^dev$/
-    - /^ft-.*-deploy$/
-    - /^hf-.*$/
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH =~ /^ft-.*-deploy$/
+    - if: $CI_COMMIT_BRANCH =~ /^hf-.*$/
   tags:
     - docker
