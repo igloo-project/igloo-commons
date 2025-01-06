@@ -32,14 +32,14 @@ maven-deploy:
   environment: staging
   script:
     - "mvn -U deploy -DperformRelease -DskipTests"
-  only:
-    - /^main$/
-    - /^dev$/
-    - /^ft-.*-deploy$/
-    - /^hf-.*$/
-    - igloo-boot
-    - igloo-boot-dev
-    - /^igloo-boot-hf-.*$/
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH == "dev"
+    - if: $CI_COMMIT_BRANCH == "igloo-boot"
+    - if: $CI_COMMIT_BRANCH == "igloo-boot-dev"
+    - if: $CI_COMMIT_BRANCH =~ /^ft-.*-deploy$/
+    - if: $CI_COMMIT_BRANCH =~ /^hf-.*$/
+    - if: $CI_COMMIT_BRANCH =~ /^igloo-boot-hf-.*$/
   tags:
     - docker
 
@@ -52,9 +52,10 @@ sonar-analyze:
       -Dsonar.projectBranch=igloo-boot
       -DskipTests
       -Dsonar.host.url="https://sonar.tools.kobalt.fr"
-  except:
-    variables:
-      - $CHECK_DEPENDENCIES
+  rules:
+    - if: $CHECK_DEPENDENCIES == "true"
+      when: never
+    - when: always
   tags:
     - docker
 
