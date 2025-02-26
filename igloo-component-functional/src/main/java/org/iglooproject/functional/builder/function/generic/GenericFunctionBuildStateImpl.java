@@ -1,6 +1,8 @@
 package org.iglooproject.functional.builder.function.generic;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import org.iglooproject.functional.Function2;
 import org.iglooproject.functional.builder.function.BigDecimalFunctionBuildState;
@@ -9,6 +11,8 @@ import org.iglooproject.functional.builder.function.DateFunctionBuildState;
 import org.iglooproject.functional.builder.function.DoubleFunctionBuildState;
 import org.iglooproject.functional.builder.function.FunctionBuildState;
 import org.iglooproject.functional.builder.function.IntegerFunctionBuildState;
+import org.iglooproject.functional.builder.function.LocalDateFunctionBuildState;
+import org.iglooproject.functional.builder.function.LocalDateTimeFunctionBuildState;
 import org.iglooproject.functional.builder.function.LongFunctionBuildState;
 import org.iglooproject.functional.builder.function.StringFunctionBuildState;
 
@@ -21,6 +25,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     TCurrentType,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -31,6 +37,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -41,6 +49,32 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
+                    TIntegerState,
+                    TLongState,
+                    TDoubleState,
+                    TBigDecimalState,
+                    TStringState>,
+        TLocalDateState extends
+            LocalDateFunctionBuildState<
+                    ?,
+                    TBooleanState,
+                    TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
+                    TIntegerState,
+                    TLongState,
+                    TDoubleState,
+                    TBigDecimalState,
+                    TStringState>,
+        TLocalDateTimeState extends
+            LocalDateTimeFunctionBuildState<
+                    ?,
+                    TBooleanState,
+                    TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -51,6 +85,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -61,6 +97,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -71,6 +109,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -81,6 +121,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -91,6 +133,8 @@ public abstract class GenericFunctionBuildStateImpl<
                     ?,
                     TBooleanState,
                     TDateState,
+                    TLocalDateState,
+                    TLocalDateTimeState,
                     TIntegerState,
                     TLongState,
                     TDoubleState,
@@ -101,6 +145,8 @@ public abstract class GenericFunctionBuildStateImpl<
         TCurrentType,
         TBooleanState,
         TDateState,
+        TLocalDateState,
+        TLocalDateTimeState,
         TIntegerState,
         TLongState,
         TDoubleState,
@@ -137,6 +183,17 @@ public abstract class GenericFunctionBuildStateImpl<
   @Override
   public TDateState toDate(Function2<? super TCurrentType, ? extends Date> function) {
     return getStateSwitcher().toDate(function);
+  }
+
+  @Override
+  public TLocalDateState toLocalDate(Function2<? super TCurrentType, LocalDate> function) {
+    return getStateSwitcher().toLocalDate(function);
+  }
+
+  @Override
+  public TLocalDateTimeState toLocalDateTime(
+      Function2<? super TCurrentType, LocalDateTime> function) {
+    return getStateSwitcher().toLocalDateTime(function);
   }
 
   @Override

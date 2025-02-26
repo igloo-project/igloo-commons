@@ -1,8 +1,8 @@
 package org.iglooproject.functional.builder.function;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public interface DateFunctionBuildState<
+public interface LocalDateFunctionBuildState<
         TBuildResult,
         TBooleanState extends
             BooleanFunctionBuildState<
@@ -114,7 +114,7 @@ public interface DateFunctionBuildState<
                     TStringState>>
     extends FunctionBuildState<
         TBuildResult,
-        Date,
+        LocalDate,
         TBooleanState,
         TDateState,
         TLocalDateState,

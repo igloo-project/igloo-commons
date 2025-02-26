@@ -1,6 +1,8 @@
 package org.iglooproject.functional.builder.function;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import org.iglooproject.functional.Function2;
 
@@ -12,6 +14,8 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -22,6 +26,32 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
+                TIntegerState,
+                TLongState,
+                TDoubleState,
+                TBigDecimalState,
+                TStringState>,
+    TLocalDateState extends
+        LocalDateFunctionBuildState<
+                ?,
+                TBooleanState,
+                TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
+                TIntegerState,
+                TLongState,
+                TDoubleState,
+                TBigDecimalState,
+                TStringState>,
+    TLocalDateTimeState extends
+        LocalDateTimeFunctionBuildState<
+                ?,
+                TBooleanState,
+                TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -32,6 +62,8 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -42,6 +74,8 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -52,6 +86,8 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -62,6 +98,8 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -72,6 +110,8 @@ public interface FunctionBuildState<
                 ?,
                 TBooleanState,
                 TDateState,
+                TLocalDateState,
+                TLocalDateTimeState,
                 TIntegerState,
                 TLongState,
                 TDoubleState,
@@ -89,6 +129,10 @@ public interface FunctionBuildState<
   TBigDecimalState toBigDecimal(Function2<? super TCurrentType, BigDecimal> function);
 
   TDateState toDate(Function2<? super TCurrentType, ? extends Date> function);
+
+  TLocalDateState toLocalDate(Function2<? super TCurrentType, LocalDate> function);
+
+  TLocalDateTimeState toLocalDateTime(Function2<? super TCurrentType, LocalDateTime> function);
 
   TBooleanState toBoolean(Function2<? super TCurrentType, Boolean> function);
 
