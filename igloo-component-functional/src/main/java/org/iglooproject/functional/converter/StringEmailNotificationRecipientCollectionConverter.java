@@ -96,13 +96,16 @@ public class StringEmailNotificationRecipientCollectionConverter<T, C extends Co
     List<String> result = Lists.newArrayList();
 
     for (INotificationRecipient notificationRecipient : value) {
-      if (StringUtils.isBlank(notificationRecipient.getEmail())) {
+      if (StringUtils.isBlank(notificationRecipient.getEmailAddress())) {
         continue;
       }
       result.add(
           !StringUtils.isBlank(notificationRecipient.getFullName())
-              ? notificationRecipient.getFullName() + "<" + notificationRecipient.getEmail() + ">"
-              : notificationRecipient.getEmail());
+              ? notificationRecipient.getFullName()
+                  + "<"
+                  + notificationRecipient.getEmailAddress()
+                  + ">"
+              : notificationRecipient.getEmailAddress());
     }
 
     return joiner.join(result);

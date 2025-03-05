@@ -6,7 +6,7 @@ public interface INotificationRecipient {
 
   Locale getLocale();
 
-  String getEmail();
+  String getEmailAddress();
 
   String getFullName();
 

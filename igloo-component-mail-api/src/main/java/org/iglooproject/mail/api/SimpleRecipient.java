@@ -6,19 +6,19 @@ public class SimpleRecipient implements INotificationRecipient {
 
   private final Locale locale;
 
-  private final String email;
+  private final String emailAddress;
 
   private final String fullName;
 
-  public SimpleRecipient(Locale locale, String email, String fullName) {
+  public SimpleRecipient(Locale locale, String emailAddress, String fullName) {
     super();
     this.locale = locale;
-    this.email = email;
+    this.emailAddress = emailAddress;
     this.fullName = fullName;
   }
 
-  public SimpleRecipient(INotificationRecipient recipient, String overriddenEmail) {
-    this(recipient.getLocale(), overriddenEmail, recipient.getFullName());
+  public SimpleRecipient(INotificationRecipient recipient, String emailAddress) {
+    this(recipient.getLocale(), emailAddress, recipient.getFullName());
   }
 
   @Override
@@ -27,8 +27,8 @@ public class SimpleRecipient implements INotificationRecipient {
   }
 
   @Override
-  public String getEmail() {
-    return email;
+  public String getEmailAddress() {
+    return emailAddress;
   }
 
   @Override
