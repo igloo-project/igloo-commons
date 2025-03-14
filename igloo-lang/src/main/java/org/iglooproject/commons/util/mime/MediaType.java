@@ -31,6 +31,7 @@ public enum MediaType {
   APPLICATION_MS_EXCEL("application/vnd.ms-excel", "xls"),
   APPLICATION_MS_EXCEL_MACRO("application/vnd.ms-excel.sheet.macroenabled.12", "xlsm"),
   APPLICATION_MS_POWERPOINT("application/vnd.ms-powerpoint", "ppt"),
+  APPLICATION_MS_OUTLOOK("application/vnd.ms-outlook", "msg"),
 
   APPLICATION_OPENXML_WORD(
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "docx"),

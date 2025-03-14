@@ -4,13 +4,13 @@ import java.util.Locale;
 
 public interface INotificationRecipient {
 
-  Locale getLocale();
+  String getNotificationEmailAddress();
 
-  String getEmail();
+  boolean isNotificationEnabled();
 
   String getFullName();
 
-  boolean isNotificationEnabled();
+  Locale getLocale();
 
   boolean isEnabled();
 }
