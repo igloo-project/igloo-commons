@@ -44,7 +44,7 @@ public class FieldPath
   private static final long serialVersionUID = 2486324046309761966L;
 
   public static final FieldPath ROOT =
-      new FieldPath(ImmutableList.<FieldPathComponent>of()) {
+      new FieldPath(List.of()) {
         private static final long serialVersionUID = 1L;
 
         private Object readResolve() {
