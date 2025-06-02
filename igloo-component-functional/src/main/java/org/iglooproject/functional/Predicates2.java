@@ -1,6 +1,5 @@
 package org.iglooproject.functional;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Streams;
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public final class Predicates2 {
 
   public static <T> SerializablePredicate2<T> and(
       SerializablePredicate2<? super T> first, Predicate<? super T> second) {
-    return and(ImmutableList.<Predicate<? super T>>of(first, second));
+    return and(List.<Predicate<? super T>>of(first, second));
   }
 
   public static <T> SerializablePredicate2<T> or(
@@ -84,7 +83,7 @@ public final class Predicates2 {
 
   public static <T> SerializablePredicate2<T> or(
       Predicate<? super T> first, Predicate<? super T> second) {
-    return or(ImmutableList.<Predicate<? super T>>of(first, second));
+    return or(List.<Predicate<? super T>>of(first, second));
   }
 
   public static <T> SerializablePredicate2<T> equalTo(T target) {
