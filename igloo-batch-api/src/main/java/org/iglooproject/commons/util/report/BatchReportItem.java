@@ -1,5 +1,6 @@
 package org.iglooproject.commons.util.report;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import java.io.Serializable;
 import java.time.Instant;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -16,6 +17,8 @@ public class BatchReportItem implements Serializable {
 
   private Exception exception;
 
+  // rétrocompatibilité avec le champs nommé "date" en igloo 5
+  @JsonAlias("date")
   private Instant instant;
 
   protected BatchReportItem() {}
