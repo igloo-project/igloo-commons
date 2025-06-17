@@ -24,23 +24,22 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class TestSerializableCollator {
 
   private static final Iterable<Collection<String>> COMPARISON_TEST_DATA =
-      ImmutableList.<Collection<String>>of(
-          ImmutableList.of("this", "is", "test", "data", "Test"),
-          ImmutableList.of(
+      List.of(
+          List.of("this", "is", "test", "data", "Test"),
+          List.of(
               "Et un", "autre", "aûtre", "avéc", "avec", "dès", "des", "dés", "àcçents",
               "accents"));
 
   private static Iterable<Locale> locales() {
-    return ImmutableList.of(Locale.ROOT, Locale.FRENCH, Locale.ENGLISH, Locale.US, Locale.UK);
+    return List.of(Locale.ROOT, Locale.FRENCH, Locale.ENGLISH, Locale.US, Locale.UK);
   }
 
   private static Iterable<Integer> strengths() {
-    return ImmutableList.of(
-        Collator.IDENTICAL, Collator.TERTIARY, Collator.SECONDARY, Collator.PRIMARY);
+    return List.of(Collator.IDENTICAL, Collator.TERTIARY, Collator.SECONDARY, Collator.PRIMARY);
   }
 
   private static Iterable<Integer> decompositions() {
-    return ImmutableList.of(
+    return List.of(
         Collator.FULL_DECOMPOSITION, Collator.CANONICAL_DECOMPOSITION, Collator.NO_DECOMPOSITION);
   }
 
