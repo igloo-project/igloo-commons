@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.iglooproject</groupId>
 		<artifactId>plugins-all</artifactId>
-		<version>6.11.0</version>
+		<version>6.12.0-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.iglooproject.components</groupId>
@@ -15,7 +15,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<igloo.igloo-maven.version>6.11.0</igloo.igloo-maven.version>
+		<igloo.igloo-maven.version>6.12.0-SNAPSHOT</igloo.igloo-maven.version>
 	</properties>
 
 	<modules>
