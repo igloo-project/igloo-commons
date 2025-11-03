@@ -5,17 +5,17 @@
 	<parent>
 		<groupId>org.iglooproject</groupId>
 		<artifactId>plugins-all</artifactId>
-		<version>6.16.3</version>
+		<version>6.16.4</version>
 	</parent>
 
 	<groupId>org.iglooproject.components</groupId>
 	<artifactId>components</artifactId>
-	<version>6.16.3</version>
+	<version>6.16.4</version>
 
 	<packaging>pom</packaging>
 
 	<properties>
-		<igloo.igloo-maven.version>6.16.3</igloo.igloo-maven.version>
+		<igloo.igloo-maven.version>6.16.4</igloo.igloo-maven.version>
 	</properties>
 
 	<modules>
