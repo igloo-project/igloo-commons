@@ -33,9 +33,9 @@ maven-deploy:
   script:
     - "mvn deploy -DperformRelease -DskipTests"
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_COMMIT_BRANCH == "dev"
-    - if: $CI_COMMIT_BRANCH =~ /^ft-.*-deploy$/
-    - if: $CI_COMMIT_BRANCH =~ /^hf-.*$/
+    - if: $CI_COMMIT_BRANCH == "v5-main"
+    - if: $CI_COMMIT_BRANCH == "v5-dev"
+    - if: $CI_COMMIT_BRANCH =~ /^v5-ft-.*-deploy$/
+    - if: $CI_COMMIT_BRANCH =~ /^v5-hf-.*$/
   tags:
     - docker
