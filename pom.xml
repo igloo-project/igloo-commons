@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.iglooproject</groupId>
     <artifactId>plugins-all</artifactId>
-    <version>6.20.0-rev-SNAPSHOT</version>
+    <version>6.20.0-SNAPSHOT</version>
   </parent>
   <groupId>org.iglooproject.components</groupId>
   <artifactId>components</artifactId>
@@ -24,8 +24,8 @@
     <module>igloo-security-api</module>
   </modules>
   <properties>
-    <revision>6.20.0-rev-SNAPSHOT</revision>
-    <igloo.igloo-maven.version>6.20.0-rev-SNAPSHOT</igloo.igloo-maven.version>
+    <revision>6.20.0-SNAPSHOT</revision>
+    <igloo.igloo-maven.version>6.20.0-SNAPSHOT</igloo.igloo-maven.version>
   </properties>
   <build>
     <pluginManagement>
