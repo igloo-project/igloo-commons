@@ -1,32 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-	<modelVersion>4.0.0</modelVersion>
-
-	<parent>
-		<groupId>org.iglooproject.components</groupId>
-		<artifactId>components</artifactId>
-		<version>6.19.0</version>
-	</parent>
-
-	<artifactId>igloo-security-api</artifactId>
-
-	<name>Igloo - Security API</name>
-	<description>Security API.</description>
-
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
-
-	<dependencies>
-	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.iglooproject.components</groupId>
+    <artifactId>components</artifactId>
+    <version>${revision}</version>
+  </parent>
+  <artifactId>igloo-security-api</artifactId>
+  <name>Igloo - Security API</name>
+  <description>Security API.</description>
+  <dependencyManagement>
+    <dependencies/>
+  </dependencyManagement>
+  <dependencies/>
 </project>
