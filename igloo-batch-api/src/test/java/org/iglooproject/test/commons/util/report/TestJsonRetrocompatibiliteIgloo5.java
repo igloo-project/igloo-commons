@@ -43,7 +43,7 @@ public class TestJsonRetrocompatibiliteIgloo5 {
             () ->
                 new ObjectMapper()
                     .registerModule(new JavaTimeModule())
-                    .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+                    .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
                     .enable(SerializationFeature.INDENT_OUTPUT)
                     .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
                     .readerFor(BatchReportItem.class)
@@ -54,7 +54,7 @@ public class TestJsonRetrocompatibiliteIgloo5 {
             () ->
                 new ObjectMapper()
                     .registerModule(new JavaTimeModule())
-                    .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+                    .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
                     .enable(SerializationFeature.INDENT_OUTPUT)
                     .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
                     .readerFor(BatchReportItem.class)
@@ -65,7 +65,7 @@ public class TestJsonRetrocompatibiliteIgloo5 {
             () ->
                 new ObjectMapper()
                     .registerModule(new JavaTimeModule())
-                    .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+                    .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
                     .enable(SerializationFeature.INDENT_OUTPUT)
                     .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
                     .readerFor(BatchReportItem.class)

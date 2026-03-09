@@ -2,6 +2,7 @@ package org.iglooproject.test.commons.io;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.InstanceOfAssertFactories.FILE;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import java.io.File;
@@ -18,7 +19,6 @@ import org.apache.commons.io.filefilter.DelegateFileFilter;
 import org.apache.commons.io.filefilter.FileFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.NameFileFilter;
-import org.assertj.core.api.FileAssert;
 import org.iglooproject.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -70,10 +70,10 @@ class TestFileUtils {
     assertThat(directoryFile).exists().isDirectory();
 
     files = FileUtils.list(directoryFile, new NameFileFilter("test1.txt"));
-    assertThat(files, FileAssert.class).singleElement().exists();
+    assertThat(files).first(FILE).exists();
 
     files = FileUtils.list(directoryFile, new NameFileFilter("test2"));
-    assertThat(files, FileAssert.class).singleElement().exists();
+    assertThat(files).first(FILE).exists();
 
     // Test sur une archive existante
     File archiveFile = new File(ZIP_FILE_PATH);

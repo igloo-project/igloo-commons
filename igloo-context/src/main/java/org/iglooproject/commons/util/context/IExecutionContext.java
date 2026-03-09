@@ -1,7 +1,6 @@
 package org.iglooproject.commons.util.context;
 
 import java.util.concurrent.Callable;
-import javax.annotation.concurrent.NotThreadSafe;
 
 /**
  * Encapsulates the concept of setting up and tearing down an implementation-defined context.
@@ -14,7 +13,6 @@ import javax.annotation.concurrent.NotThreadSafe;
  *
  * <p>Implementations are not required to be thread-safe.
  */
-@NotThreadSafe
 public interface IExecutionContext {
 
   /**
