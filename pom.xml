@@ -24,7 +24,7 @@
     <module>igloo-security-api</module>
   </modules>
   <properties>
-    <revision>7.0.0-SNAPSHOT</revision>
+    <revision>7.0.0</revision>
     <igloo.igloo-maven.version>7.0.0-SNAPSHOT</igloo.igloo-maven.version>
   </properties>
   <build>
