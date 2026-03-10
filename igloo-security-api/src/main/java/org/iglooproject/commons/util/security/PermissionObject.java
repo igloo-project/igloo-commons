@@ -1,13 +1,12 @@
 package org.iglooproject.commons.util.security;
 
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(PARAMETER)
-@Retention(RUNTIME)
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.PARAMETER)
 public @interface PermissionObject {
 
   String DEFAULT_PERMISSION_OBJECT_NAME = "permissionObject";
