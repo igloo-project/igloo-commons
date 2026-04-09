@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.iglooproject.components</groupId>
     <artifactId>components</artifactId>
-    <version>${revision}</version>
+    <version>7.1.0-UPDATE-SNAPSHOT</version>
   </parent>
   <artifactId>igloo-component-mail-api</artifactId>
   <name>Igloo - Component - Mail API</name>

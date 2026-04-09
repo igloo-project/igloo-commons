@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.iglooproject</groupId>
     <artifactId>plugins-all</artifactId>
-    <version>7.1.0-SNAPSHOT</version>
+    <version>7.1.0-UPDATE-SNAPSHOT</version>
   </parent>
   <groupId>org.iglooproject.components</groupId>
   <artifactId>components</artifactId>
-  <version>${revision}</version>
+  <version>7.1.0-UPDATE-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>bindgen-functional</module>
@@ -24,8 +24,8 @@
     <module>igloo-security-api</module>
   </modules>
   <properties>
-    <revision>7.1.0-SNAPSHOT</revision>
-    <igloo.igloo-maven.version>7.1.0-SNAPSHOT</igloo.igloo-maven.version>
+    <revision>7.1.0-UPDATE-SNAPSHOT</revision>
+    <igloo.igloo-maven.version>7.1.0-UPDATE-SNAPSHOT</igloo.igloo-maven.version>
   </properties>
   <build>
     <plugins>

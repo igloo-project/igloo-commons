@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.iglooproject.components</groupId>
     <artifactId>components</artifactId>
-    <version>${revision}</version>
+    <version>7.1.0-UPDATE-SNAPSHOT</version>
   </parent>
   <artifactId>igloo-batch-api</artifactId>
   <name>Igloo - Batch API</name>
@@ -69,7 +69,7 @@
     <dependency>
       <groupId>org.iglooproject.components</groupId>
       <artifactId>bindgen-functional</artifactId>
-      <version>${revision}</version>
+      <version>7.1.0-UPDATE-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>jakarta.annotation</groupId>
