@@ -55,8 +55,8 @@ public class StringBooleanConverter extends SerializableConverter2<String, Boole
    * possible issue.
    */
   @Override
-  public boolean equals(Object object) {
-    return super.equals(object);
+  public boolean equals(Object obj) {
+    return super.equals(obj);
   }
 
   /** Workaround sonar/findbugs - see #equals(Object) */

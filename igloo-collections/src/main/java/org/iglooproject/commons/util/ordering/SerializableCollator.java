@@ -7,8 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.Locale;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import java.util.Objects;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -77,22 +76,18 @@ public final class SerializableCollator extends Ordering<String> implements Seri
 
   @Override
   public boolean equals(Object obj) {
-    if (obj == this) {
+    if (this == obj) {
       return true;
     }
-    if (!(obj instanceof SerializableCollator)) {
+    if (!(obj instanceof SerializableCollator other)) {
       return false;
     }
-    SerializableCollator other = (SerializableCollator) obj;
-    return new EqualsBuilder()
-        .append(locale, other.locale)
-        .append(collator, other.collator)
-        .build();
+    return Objects.equals(locale, other.locale) && Objects.equals(collator, other.collator);
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder().append(locale).append(collator).build();
+    return Objects.hash(locale, collator);
   }
 
   @Override

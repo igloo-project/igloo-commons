@@ -50,8 +50,8 @@ public class StringDirectoryFileCreatingConverter extends SerializableConverter2
    * possible issue.
    */
   @Override
-  public boolean equals(Object object) {
-    return super.equals(object);
+  public boolean equals(Object obj) {
+    return super.equals(obj);
   }
 
   /** Workaround sonar/findbugs - see #equals(Object) */
