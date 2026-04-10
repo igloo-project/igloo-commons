@@ -6,9 +6,8 @@ import com.google.common.collect.Lists;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.text.StringTokenizer;
 import org.apache.commons.text.matcher.StringMatcher;
 import org.apache.commons.text.matcher.StringMatcherFactory;
@@ -216,17 +215,18 @@ public class FieldPath
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof FieldPath) {
-      FieldPath other = (FieldPath) obj;
-      return new EqualsBuilder().append(components, other.components).build();
-    } else {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof FieldPath other)) {
       return false;
     }
+    return Objects.equals(components, other.components);
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder().append(components).build();
+    return Objects.hash(components);
   }
 
   @Override

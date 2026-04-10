@@ -4,8 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import java.util.Objects;
 import org.iglooproject.commons.util.context.IExecutionContext.ITearDownHandle;
 
 public final class ExecutionContexts {
@@ -84,19 +83,18 @@ public final class ExecutionContexts {
 
     @Override
     public boolean equals(Object obj) {
-      if (obj instanceof CompositeExecutionContext) {
-        if (obj == this) {
-          return true;
-        }
-        CompositeExecutionContext other = (CompositeExecutionContext) obj;
-        return new EqualsBuilder().append(components, other.components).build();
+      if (this == obj) {
+        return true;
       }
-      return false;
+      if (!(obj instanceof CompositeExecutionContext other)) {
+        return false;
+      }
+      return Objects.equals(components, other.components);
     }
 
     @Override
     public int hashCode() {
-      return new HashCodeBuilder().append(components).build();
+      return Objects.hash(components);
     }
   }
   ;

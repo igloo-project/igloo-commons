@@ -1,7 +1,6 @@
 package org.iglooproject.commons.util.fieldpath;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import java.util.Objects;
 
 public class FieldPathPropertyComponent extends FieldPathComponent {
 
@@ -31,17 +30,18 @@ public class FieldPathPropertyComponent extends FieldPathComponent {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof FieldPathPropertyComponent) {
-      FieldPathPropertyComponent other = (FieldPathPropertyComponent) obj;
-      return new EqualsBuilder().append(propertyName, other.propertyName).build();
-    } else {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof FieldPathPropertyComponent other)) {
       return false;
     }
+    return Objects.equals(propertyName, other.propertyName);
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder().append(propertyName).build();
+    return Objects.hash(propertyName);
   }
 
   @Override
