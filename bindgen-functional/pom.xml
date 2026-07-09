@@ -52,6 +52,13 @@
 		<dependency>
 			<groupId>org.iglooproject.components</groupId>
 			<artifactId>bindgen-bindings-java</artifactId>
+			<!--Utilisation de la version 3.0.0 (java17) avec bindgen 5.1.0-->
+			<exclusions>
+				<exclusion>
+					<groupId>org.bindgen</groupId>
+					<artifactId>bindgen</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.bindgen</groupId>
