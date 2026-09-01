@@ -40,7 +40,7 @@ maven-deploy:
   tags:
     - docker
 
-sonar-analyze:
+sonar-old-analyze:
   needs: []
   stage: analyze
   environment: staging
@@ -56,3 +56,19 @@ sonar-analyze:
   tags:
     - docker
 
+sonar-analyze:
+  needs: []
+  stage: analyze
+  environment: staging
+  script:
+    - mvn -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      -Dsonar.projectBranch=dev
+      -DskipTests
+      -Dsonar.host.url="https://sonar2.tools.kobalt.fr"
+      -Dsonar.token="$SONAR_TOKEN"
+  rules:
+    - if: $CHECK_DEPENDENCIES == "true"
+      when: never
+    - when: always
+  tags:
+    - docker
