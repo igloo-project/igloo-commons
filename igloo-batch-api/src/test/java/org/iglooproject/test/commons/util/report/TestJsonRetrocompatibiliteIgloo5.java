@@ -1,14 +1,13 @@
 package org.iglooproject.test.commons.util.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.assertj.core.api.Assertions;
 import org.iglooproject.commons.util.report.BatchReportItem;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.exc.UnrecognizedPropertyException;
+import tools.jackson.databind.json.JsonMapper;
 
 public class TestJsonRetrocompatibiliteIgloo5 {
   @Test
@@ -41,33 +40,39 @@ public class TestJsonRetrocompatibiliteIgloo5 {
 
     Assertions.assertThatThrownBy(
             () ->
-                new ObjectMapper()
-                    .registerModule(new JavaTimeModule())
-                    .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
+                JsonMapper.builder()
+                    .configureForJackson2()
+                    .changeDefaultPropertyInclusion(
+                        incl -> incl.withValueInclusion(JsonInclude.Include.NON_EMPTY))
                     .enable(SerializationFeature.INDENT_OUTPUT)
                     .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+                    .build()
                     .readerFor(BatchReportItem.class)
                     .readValue(jsonBad))
         .isInstanceOf(UnrecognizedPropertyException.class);
 
     Assertions.assertThatCode(
             () ->
-                new ObjectMapper()
-                    .registerModule(new JavaTimeModule())
-                    .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
+                JsonMapper.builder()
+                    .configureForJackson2()
+                    .changeDefaultPropertyInclusion(
+                        incl -> incl.withValueInclusion(JsonInclude.Include.NON_EMPTY))
                     .enable(SerializationFeature.INDENT_OUTPUT)
                     .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+                    .build()
                     .readerFor(BatchReportItem.class)
                     .readValue(jsonDate))
         .doesNotThrowAnyException();
 
     Assertions.assertThatCode(
             () ->
-                new ObjectMapper()
-                    .registerModule(new JavaTimeModule())
-                    .setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY)
+                JsonMapper.builder()
+                    .configureForJackson2()
+                    .changeDefaultPropertyInclusion(
+                        incl -> incl.withValueInclusion(JsonInclude.Include.NON_EMPTY))
                     .enable(SerializationFeature.INDENT_OUTPUT)
                     .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+                    .build()
                     .readerFor(BatchReportItem.class)
                     .readValue(jsonInstant))
         .doesNotThrowAnyException();
