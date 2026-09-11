@@ -72,5 +72,8 @@ sonar-analyze:
     - if: $CHECK_DEPENDENCIES == "true"
       when: never
     - when: always
+  variables:
+    # get rid of sonar Shallow clone detected... warning
+    GIT_DEPTH: 0
   tags:
     - docker
