@@ -5,6 +5,7 @@ image:
 
 variables:
   MAVEN_OPTS: "-Xmx256m"
+  SONAR_EXCLUSIONS: "**/*.png,**/*.jpg,**/*.ico,**/*.ttf,**/*.xlsx,**/*.zip,**/*.woff2"
 
 stages:
   - build
@@ -66,6 +67,7 @@ sonar-analyze:
       -DskipTests
       -Dsonar.host.url="https://sonar2.tools.kobalt.fr"
       -Dsonar.token="$SONAR_TOKEN"
+      -Dsonar.exclusions="$SONAR_EXCLUSIONS"
   rules:
     - if: $CHECK_DEPENDENCIES == "true"
       when: never
