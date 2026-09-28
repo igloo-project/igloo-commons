@@ -41,23 +41,6 @@ maven-deploy:
   tags:
     - docker
 
-sonar-old-analyze:
-  needs: []
-  stage: analyze
-  environment: staging
-  script:
-    - mvn -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-      -Dsonar.projectBranch=${CI_COMMIT_BRANCH}
-      -DskipTests
-      -Dsonar.host.url="https://sonar.tools.kobalt.fr"
-  rules:
-    - if: $CI_COMMIT_BRANCH == "dev"
-      when: on_success
-    - if: $CI_COMMIT_BRANCH == "main"
-      when: on_success
-  tags:
-    - docker
-
 sonar-analyze:
   needs: []
   stage: analyze
