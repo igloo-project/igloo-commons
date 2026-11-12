@@ -1,163 +1,175 @@
 package org.iglooproject.commons.util.mime;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
 import org.bindgen.Bindable;
 
 @Bindable
-public enum MediaType implements IMediaType {
-  APPLICATION_GZIP(
-      MediaTypeDefinition.of("application/gzip")
-          .withMimes("application/x-gzip")
-          .withExtension("gz")
-          .withExtensions("tgz")),
-  APPLICATION_JAVA_ARCHIVE(MediaTypeDefinition.of("application/java-archive").withExtension("jar")),
-  APPLICATION_JSON(MediaTypeDefinition.of("application/json").withExtension("json")),
-  APPLICATION_MSWORD(
-      MediaTypeDefinition.of("application/msword")
-          .withMimes("application/vnd.ms-word")
-          .withExtension("doc")),
-  APPLICATION_OCTET_STREAM(MediaTypeDefinition.of("application/octet-stream").withExtension("bin")),
-  APPLICATION_PDF(
-      MediaTypeDefinition.of("application/pdf")
-          .withMimes("application/x-pdf")
-          .withExtension("pdf")),
-  APPLICATION_RTF(
-      MediaTypeDefinition.of("application/rtf").withMimes("text/rtf").withExtension("rtf")),
-  APPLICATION_MSEXCEL(
-      MediaTypeDefinition.of("application/vnd.ms-excel")
-          .withMimes("application/msexcel")
-          .withExtension("xls")),
-  APPLICATION_MSOUTLOOK(MediaTypeDefinition.of("application/vnd.ms-outlook").withExtension("msg")),
+public enum MediaType {
+  APPLICATION_GZIP(List.of("application/gzip", "application/x-gzip"), List.of("gz", "tgz")),
+  APPLICATION_JAVA_ARCHIVE(List.of("application/java-archive"), List.of("jar")),
+  APPLICATION_JSON(List.of("application/json"), List.of("json")),
+  APPLICATION_MSWORD(List.of("application/msword", "application/vnd.ms-word"), List.of("doc")),
+  APPLICATION_OCTET_STREAM(List.of("application/octet-stream"), List.of("bin")),
+  APPLICATION_PDF(List.of("application/pdf", "application/x-pdf"), List.of("pdf")),
+  APPLICATION_RTF(List.of("application/rtf", "text/rtf"), List.of("rtf")),
+  APPLICATION_MSEXCEL(List.of("application/vnd.ms-excel", "application/msexcel"), List.of("xls")),
+  APPLICATION_MSOUTLOOK(List.of("application/vnd.ms-outlook"), List.of("msg")),
   APPLICATION_MSPOWERPOINT(
-      MediaTypeDefinition.of("application/vnd.ms-powerpoint")
-          .withMimes("application/mspowerpoint")
-          .withExtension("ppt")),
-  APPLICATION_ODP(
-      MediaTypeDefinition.of("application/vnd.oasis.opendocument.presentation")
-          .withExtension("odp")),
-  APPLICATION_ODS(
-      MediaTypeDefinition.of("application/vnd.oasis.opendocument.spreadsheet")
-          .withExtension("ods")),
-  APPLICATION_ODT(
-      MediaTypeDefinition.of("application/vnd.oasis.opendocument.text").withExtension("odt")),
+      List.of("application/vnd.ms-powerpoint", "application/mspowerpoint"), List.of("ppt")),
+  APPLICATION_ODP(List.of("application/vnd.oasis.opendocument.presentation"), List.of("odp")),
+  APPLICATION_ODS(List.of("application/vnd.oasis.opendocument.spreadsheet"), List.of("ods")),
+  APPLICATION_ODT(List.of("application/vnd.oasis.opendocument.text"), List.of("odt")),
   APPLICATION_PPTX(
-      MediaTypeDefinition.of(
-              "application/vnd.openxmlformats-officedocument.presentationml.presentation")
-          .withExtension("pptx")),
+      List.of("application/vnd.openxmlformats-officedocument.presentationml.presentation"),
+      List.of("pptx")),
   APPLICATION_XLSX(
-      MediaTypeDefinition.of("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-          .withExtension("xlsx")),
+      List.of("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+      List.of("xlsx")),
+  APPLICATION_XLSM(List.of("application/vnd.ms-excel.sheet.macroenabled.12"), List.of("xlsm")),
   APPLICATION_DOCX(
-      MediaTypeDefinition.of(
-              "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-          .withExtension("docx")),
+      List.of("application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
+      List.of("docx")),
   APPLICATION_RAR(
-      MediaTypeDefinition.of("application/vnd.rar")
-          .withMimes("application/x-rar-compressed", "application/x-rar")
-          .withExtension("rar")),
-  APPLICATION_7Z(MediaTypeDefinition.of("application/x-7z-compressed").withExtension("7z")),
-  APPLICATION_TAR(MediaTypeDefinition.of("application/x-tar").withExtension("tar")),
-  APPLICATION_XML(
-      MediaTypeDefinition.of("application/xml").withMimes("text/xml").withExtension("xml")),
-  APPLICATION_ZIP(
-      MediaTypeDefinition.of("application/zip")
-          .withMimes("application/x-zip-compressed")
-          .withExtension("zip")),
+      List.of("application/vnd.rar", "application/x-rar-compressed", "application/x-rar"),
+      List.of("rar")),
+  APPLICATION_7Z(List.of("application/x-7z-compressed"), List.of("7z")),
+  APPLICATION_TAR(List.of("application/x-tar"), List.of("tar")),
+  APPLICATION_XML(List.of("application/xml", "text/xml"), List.of("xml")),
+  APPLICATION_ZIP(List.of("application/zip", "application/x-zip-compressed"), List.of("zip")),
 
-  AUDIO_AAC(MediaTypeDefinition.of("audio/aac").withMimes("audio/x-aac").withExtension("aac")),
-  AUDIO_FLAC(MediaTypeDefinition.of("audio/flac").withMimes("audio/x-flac").withExtension("flac")),
-  AUDIO_MP4(MediaTypeDefinition.of("audio/mp4").withMimes("audio/x-m4a").withExtension("m4a")),
-  AUDIO_MPEG(MediaTypeDefinition.of("audio/mpeg").withExtension("mp3")),
-  AUDIO_OGG(
-      MediaTypeDefinition.of("audio/ogg")
-          .withMimes("audio/vorbis")
-          .withExtension("ogg")
-          .withExtensions("oga")),
-  AUDIO_OPUS(MediaTypeDefinition.of("audio/opus").withExtension("opus")),
-  AUDIO_WAV(
-      MediaTypeDefinition.of("audio/vnd.wave")
-          .withMimes("audio/wav", "audio/wave", "audio/x-wav")
-          .withExtension("wav")),
+  AUDIO_AAC(List.of("audio/aac", "audio/x-aac"), List.of("aac")),
+  AUDIO_FLAC(List.of("audio/flac", "audio/x-flac"), List.of("flac")),
+  AUDIO_MP4(List.of("audio/mp4", "audio/x-m4a"), List.of("m4a")),
+  AUDIO_MPEG(List.of("audio/mpeg"), List.of("mp3")),
+  AUDIO_OGG(List.of("audio/ogg", "audio/vorbis"), List.of("ogg", "oga")),
+  AUDIO_OPUS(List.of("audio/opus"), List.of("opus")),
+  AUDIO_WAV(List.of("audio/vnd.wave", "audio/wav", "audio/wave", "audio/x-wav"), List.of("wav")),
 
-  IMAGE_AVIF(MediaTypeDefinition.of("image/avif").withExtension("avif")),
-  IMAGE_BMP(
-      MediaTypeDefinition.of("image/bmp")
-          .withMimes("image/x-ms-bmp", "image/x-bmp")
-          .withExtension("bmp")),
-  IMAGE_GIF(MediaTypeDefinition.of("image/gif").withExtension("gif")),
-  IMAGE_HEIC(MediaTypeDefinition.of("image/heic").withExtension("heic")),
-  IMAGE_HEIF(MediaTypeDefinition.of("image/heif").withExtension("heif")),
-  IMAGE_JPEG(
-      MediaTypeDefinition.of("image/jpeg")
-          .withMimes("image/pjpeg")
-          .withExtension("jpg")
-          .withExtensions("jpeg", "jpe", "jfif")),
-  IMAGE_PNG(MediaTypeDefinition.of("image/png").withMimes("image/x-png").withExtension("png")),
-  IMAGE_TIFF(MediaTypeDefinition.of("image/tiff").withExtension("tif").withExtensions("tiff")),
-  IMAGE_WEBP(MediaTypeDefinition.of("image/webp").withExtension("webp")),
+  IMAGE_AVIF(List.of("image/avif"), List.of("avif")),
+  IMAGE_BMP(List.of("image/bmp", "image/x-ms-bmp", "image/x-bmp"), List.of("bmp")),
+  IMAGE_GIF(List.of("image/gif"), List.of("gif")),
+  IMAGE_HEIC(List.of("image/heic"), List.of("heic")),
+  IMAGE_HEIF(List.of("image/heif"), List.of("heif")),
+  IMAGE_JPEG(List.of("image/jpeg", "image/pjpeg"), List.of("jpg", "jpeg", "jpe", "jfif")),
+  IMAGE_PNG(List.of("image/png", "image/x-png"), List.of("png")),
+  IMAGE_TIFF(List.of("image/tiff"), List.of("tif", "tiff")),
+  IMAGE_WEBP(List.of("image/webp"), List.of("webp")),
 
-  TEXT_CSS(MediaTypeDefinition.of("text/css").withExtension("css")),
-  TEXT_CSV(MediaTypeDefinition.of("text/csv").withExtension("csv")),
-  TEXT_HTML(MediaTypeDefinition.of("text/html").withExtension("html").withExtensions("htm")),
+  TEXT_CSS(List.of("text/css"), List.of("css")),
+  TEXT_CSV(List.of("text/csv"), List.of("csv")),
+  TEXT_HTML(List.of("text/html"), List.of("html", "htm")),
   TEXT_JAVASCRIPT(
-      MediaTypeDefinition.of("text/javascript")
-          .withMimes("application/javascript", "application/x-javascript")
-          .withExtension("js")
-          .withExtensions("mjs")),
-  TEXT_PLAIN(MediaTypeDefinition.of("text/plain").withExtension("txt")),
+      List.of("text/javascript", "application/javascript", "application/x-javascript"),
+      List.of("js", "mjs")),
+  TEXT_PLAIN(List.of("text/plain"), List.of("txt")),
 
-  VIDEO_MATROSKA(
-      MediaTypeDefinition.of("video/matroska").withMimes("video/x-matroska").withExtension("mkv")),
-  VIDEO_MP4(
-      MediaTypeDefinition.of("video/mp4")
-          .withMimes("video/x-m4v")
-          .withExtension("mp4")
-          .withExtensions("m4v")),
-  VIDEO_MPEG(MediaTypeDefinition.of("video/mpeg").withExtension("mpeg").withExtensions("mpg")),
-  VIDEO_OGG(MediaTypeDefinition.of("video/ogg").withExtension("ogv")),
-  VIDEO_QUICKTIME(MediaTypeDefinition.of("video/quicktime").withExtension("mov")),
-  VIDEO_WEBM(MediaTypeDefinition.of("video/webm").withExtension("webm")),
+  VIDEO_MATROSKA(List.of("video/matroska", "video/x-matroska"), List.of("mkv")),
+  VIDEO_MP4(List.of("video/mp4", "video/x-m4v"), List.of("mp4", "m4v")),
+  VIDEO_MPEG(List.of("video/mpeg"), List.of("mpeg", "mpg")),
+  VIDEO_OGG(List.of("video/ogg"), List.of("ogv")),
+  VIDEO_QUICKTIME(List.of("video/quicktime"), List.of("mov")),
+  VIDEO_WEBM(List.of("video/webm"), List.of("webm")),
   VIDEO_AVI(
-      MediaTypeDefinition.of("video/x-msvideo")
-          .withMimes("video/vnd.avi", "video/avi", "video/msvideo")
-          .withExtension("avi"));
+      List.of("video/x-msvideo", "video/vnd.avi", "video/avi", "video/msvideo"), List.of("avi")),
 
-  private final MediaTypeDefinition definition;
+  @Deprecated
+  APPLICATION_GPX(List.of("application/gpx+xml"), List.of("gpx")),
+  @Deprecated
+  APPLICATION_KML(List.of("application/vnd.google-earth.kml+xml"), List.of("kml")),
+  @Deprecated
+  APPLICATION_KMZ(List.of("application/vnd.google-earth.kmz"), List.of("kmz")),
+  @Deprecated
+  APPLICATION_ODF_CHART(List.of("application/vnd.oasis.opendocument.chart"), List.of("odc")),
+  @Deprecated
+  APPLICATION_SWF(List.of("application/x-shockwave-flash"), List.of("swf")),
+  @Deprecated
+  IMAGE_JPEG2000(List.of("image/jp2"), List.of("jp2")),
+  @Deprecated
+  IMAGE_PSD(List.of("image/x-photoshop"), List.of("psd")),
+  @Deprecated
+  IMAGE_SVG(List.of("image/svg+xml"), List.of("svg")),
+  @Deprecated
+  IMAGE_X_ICON(List.of("image/x-icon"), List.of("ico")),
+  @Deprecated
+  TEXT_CALENDAR(List.of("text/calendar"), List.of("ics"));
 
-  MediaType(MediaTypeDefinition definition) {
-    this.definition = definition;
+  private static final Map<String, MediaType> MIME_TYPE_MAPPING = index(MediaType::mimes);
+
+  private static final Map<String, MediaType> EXTENSION_MAPPING = index(MediaType::extensions);
+
+  private final List<String> mimes;
+
+  private final List<String> extensions;
+
+  MediaType(List<String> mimes, List<String> extensions) {
+    this.mimes = mimes;
+    this.extensions = extensions;
   }
 
-  @Override
-  public MediaTypeDefinition definition() {
-    return definition;
-  }
-
-  @Override
   public String mime() {
-    return definition.mime();
+    return mimes.get(0);
+  }
+
+  public List<String> mimes() {
+    return mimes;
   }
 
   public String mimeUtf8() {
     return "%s;charset=UTF-8".formatted(mime());
   }
 
-  @Override
   public String extension() {
-    return definition.extension();
+    return extensions.get(0);
+  }
+
+  public List<String> extensions() {
+    return extensions;
   }
 
   public List<String> supportedExtensions() {
-    return definition.extensions();
+    return extensions;
   }
 
   public List<String> supportedMimeTypes() {
-    return definition.mimes();
+    return mimes;
   }
 
   public boolean supports(String extension) {
-    return extension != null
-        && definition.extensions().contains(extension.trim().toLowerCase(Locale.ROOT));
+    return extension != null && extensions.contains(normalize(extension));
+  }
+
+  public static MediaType fromExtension(String extension) {
+    if (extension == null) {
+      return null;
+    }
+    return EXTENSION_MAPPING.get(normalize(extension));
+  }
+
+  public static MediaType fromMimeType(String mimeType) {
+    if (mimeType == null) {
+      return null;
+    }
+    int parameterStart = mimeType.indexOf(';');
+    return MIME_TYPE_MAPPING.get(
+        normalize(parameterStart == -1 ? mimeType : mimeType.substring(0, parameterStart)));
+  }
+
+  private static Map<String, MediaType> index(Function<MediaType, List<String>> keys) {
+    Map<String, MediaType> index = new HashMap<>();
+    for (MediaType mediaType : values()) {
+      for (String key : keys.apply(mediaType)) {
+        index.putIfAbsent(key, mediaType);
+      }
+    }
+    return Collections.unmodifiableMap(index);
+  }
+
+  private static String normalize(String value) {
+    return value.trim().toLowerCase(Locale.ROOT);
   }
 }
