@@ -1,11 +1,11 @@
 package org.iglooproject.commons.util.fieldpath;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -134,7 +134,7 @@ public class FieldPath
     if (size > 0) {
       return Optional.of(components.get(size - 1));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -143,7 +143,7 @@ public class FieldPath
     if (size > 0) {
       return Optional.of(new FieldPath(components.subList(0, size - 1)));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -152,7 +152,7 @@ public class FieldPath
   }
 
   public boolean isItem() {
-    FieldPathComponent lastComponent = lastComponent().orNull();
+    FieldPathComponent lastComponent = lastComponent().orElse(null);
     return lastComponent == FieldPathComponent.ITEM;
   }
 
@@ -160,7 +160,7 @@ public class FieldPath
     if (isItem()) {
       return parent();
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -169,7 +169,7 @@ public class FieldPath
     if (itemIndex >= 0) {
       return Optional.of(new FieldPath(components.subList(0, itemIndex)));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -190,15 +190,15 @@ public class FieldPath
       return Optional.of(
           new FieldPath(components.subList(other.components.size(), components.size())));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
   public Optional<FieldPath> relativeToParent() {
     if (isRoot()) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
-      return relativeTo(parent().get());
+      return relativeTo(parent().orElseThrow());
     }
   }
 
