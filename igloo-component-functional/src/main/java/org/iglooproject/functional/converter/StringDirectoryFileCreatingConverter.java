@@ -30,7 +30,7 @@ public class StringDirectoryFileCreatingConverter extends SerializableConverter2
         try {
           FileUtils.forceMkdir(directory);
           return directory;
-        } catch (IOException e) {
+        } catch (IOException _) {
           throw new IllegalStateException(
               "The directory " + path + " does not exist and it is impossible to create it.");
         }

@@ -11,7 +11,7 @@ public abstract class SerializableConverter2<A, B> extends Converter<A, B>
 
   public static final <A, B> SerializableConverter2<A, B> from(Converter<A, B> converter) {
     Objects.requireNonNull(converter);
-    return new SerializableConverter2<A, B>() {
+    return new SerializableConverter2<>() {
       private static final long serialVersionUID = 1L;
 
       @Override

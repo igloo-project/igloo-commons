@@ -84,11 +84,10 @@ public final class ExecutionContexts {
 
     @Override
     public boolean equals(Object obj) {
-      if (obj instanceof CompositeExecutionContext) {
+      if (obj instanceof CompositeExecutionContext other) {
         if (obj == this) {
           return true;
         }
-        CompositeExecutionContext other = (CompositeExecutionContext) obj;
         return new EqualsBuilder().append(components, other.components).build();
       }
       return false;
@@ -99,7 +98,6 @@ public final class ExecutionContexts {
       return new HashCodeBuilder().append(components).build();
     }
   }
-  ;
 
   private static final class CompositeTearDownHandle implements ITearDownHandle {
     private final Collection<? extends ITearDownHandle> components;

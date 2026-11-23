@@ -15,7 +15,7 @@ public final class Equivalences {
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   private static final Equivalence<? extends Comparable> COMPARABLE_EQUIVALENCE =
-      new AbstractSerializableEquivalence<Comparable>() {
+      new AbstractSerializableEquivalence<>() {
         private static final long serialVersionUID = -6403530720447387732L;
 
         @Override
@@ -38,7 +38,7 @@ public final class Equivalences {
   }
 
   private static final Equivalence<Date> DATE_EQUIVALENCE =
-      new AbstractSerializableEquivalence<Date>() {
+      new AbstractSerializableEquivalence<>() {
         private static final long serialVersionUID = 8680281926385852199L;
 
         @Override

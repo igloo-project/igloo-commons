@@ -83,12 +83,12 @@ public final class Functions2 {
   }
 
   public static <E> SerializableFunction2<Object, E> constant(E value) {
-    return o -> value;
+    return _ -> value;
   }
 
   public static <T> SerializableFunction2<Object, T> forSupplier(Supplier<T> supplier) {
     Objects.requireNonNull(supplier);
-    return t -> supplier.get();
+    return _ -> supplier.get();
   }
 
   public static <A, B>

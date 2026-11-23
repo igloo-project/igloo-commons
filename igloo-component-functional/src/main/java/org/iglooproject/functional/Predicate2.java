@@ -30,6 +30,6 @@ public interface Predicate2<T> extends Predicate<T>, com.google.common.base.Pred
   }
 
   static <T> Predicate2<T> isEqual(Object targetRef) {
-    return (null == targetRef) ? Objects::isNull : object -> targetRef.equals(object);
+    return (null == targetRef) ? Objects::isNull : targetRef::equals;
   }
 }

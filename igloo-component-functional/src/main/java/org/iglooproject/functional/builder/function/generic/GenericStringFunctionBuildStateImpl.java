@@ -180,12 +180,12 @@ public abstract class GenericStringFunctionBuildStateImpl<
 
   @Override
   public TStringState strip() {
-    return toString(input -> stripToNull(input));
+    return toString(GenericStringFunctionBuildStateImpl::stripToNull);
   }
 
   @Override
   public TStringState trim() {
-    return toString(input -> StringUtils.trimToNull(input));
+    return toString(StringUtils::trimToNull);
   }
 
   @Override

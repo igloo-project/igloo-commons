@@ -19,7 +19,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class PredicateSerializableTest {
 
   private static final SerializablePredicate2<Object> PREDICATE_SERIALIZABLE =
-      new SerializablePredicate2<Object>() {
+      new SerializablePredicate2<>() {
         private static final long serialVersionUID = 1L;
 
         @Override
@@ -28,15 +28,7 @@ class PredicateSerializableTest {
         }
       };
 
-  private static final SerializableFunction2<Object, Object> FUNCTION_SERIALIZABLE =
-      new SerializableFunction2<Object, Object>() {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Object apply(Object t) {
-          return t;
-        }
-      };
+  private static final SerializableFunction2<Object, Object> FUNCTION_SERIALIZABLE = t -> t;
 
   public static Iterable<Predicate<?>> data() {
     return ImmutableList.<Predicate<?>>builder()

@@ -27,7 +27,7 @@ public final class FileUtils {
     List<File> files = list(directory, new NameFileFilter(name));
 
     if (files.size() == 1) {
-      return files.get(0);
+      return files.getFirst();
     } else {
       throw new IllegalArgumentException(
           "Unable to find file " + name + " in " + directory.getAbsolutePath());

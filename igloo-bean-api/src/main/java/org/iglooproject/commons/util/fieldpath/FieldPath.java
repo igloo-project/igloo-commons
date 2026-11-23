@@ -83,7 +83,7 @@ public class FieldPath
       Binding<?> currentBinding = binding;
       Binding<?> parentBinding = currentBinding.getParentBinding();
       while (parentBinding != null) {
-        components.add(0, new FieldPathPropertyComponent(currentBinding.getName()));
+        components.addFirst(new FieldPathPropertyComponent(currentBinding.getName()));
         currentBinding = parentBinding;
         parentBinding = currentBinding.getParentBinding();
       }
@@ -216,8 +216,7 @@ public class FieldPath
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof FieldPath) {
-      FieldPath other = (FieldPath) obj;
+    if (obj instanceof FieldPath other) {
       return new EqualsBuilder().append(components, other.components).build();
     } else {
       return false;

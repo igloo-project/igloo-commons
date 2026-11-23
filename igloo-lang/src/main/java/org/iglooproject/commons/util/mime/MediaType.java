@@ -112,7 +112,7 @@ public enum MediaType {
   }
 
   public String mime() {
-    return mimes.get(0);
+    return mimes.getFirst();
   }
 
   public List<String> mimes() {
@@ -124,7 +124,7 @@ public enum MediaType {
   }
 
   public String extension() {
-    return extensions.get(0);
+    return extensions.getFirst();
   }
 
   public List<String> extensions() {

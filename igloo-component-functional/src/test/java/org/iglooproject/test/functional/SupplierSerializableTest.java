@@ -19,7 +19,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SupplierSerializableTest {
 
   private static final SerializableSupplier2<Object> SUPPLIER_SERIALIZABLE =
-      new SerializableSupplier2<Object>() {
+      new SerializableSupplier2<>() {
         private static final long serialVersionUID = 1L;
 
         @Override
@@ -28,15 +28,7 @@ class SupplierSerializableTest {
         }
       };
 
-  private static final SerializableFunction2<Object, Object> FUNCTION_SERIALIZABLE =
-      new SerializableFunction2<Object, Object>() {
-        private static final long serialVersionUID = 1L;
-
-        @Override
-        public Object apply(Object t) {
-          return t;
-        }
-      };
+  private static final SerializableFunction2<Object, Object> FUNCTION_SERIALIZABLE = t -> t;
 
   public static Iterable<Supplier<?>> data() {
     return ImmutableList.<Supplier<?>>builder()

@@ -67,7 +67,7 @@ public class BatchReport implements Serializable {
 
   private void addItem(BatchReportItemSeverity severity, String message, Exception e) {
     if (!items.containsKey(context)) {
-      items.put(context, new ArrayList<BatchReportItem>());
+      items.put(context, new ArrayList<>());
     }
     items.get(context).add(new BatchReportItem(severity, message, e));
   }

@@ -22,6 +22,6 @@ public interface SerializablePredicate2<T> extends Predicate2<T>, SerializablePr
   }
 
   static <T> SerializablePredicate2<T> isEqual(Object targetRef) {
-    return (null == targetRef) ? Objects::isNull : object -> targetRef.equals(object);
+    return (null == targetRef) ? Objects::isNull : targetRef::equals;
   }
 }

@@ -31,8 +31,7 @@ public class FieldPathPropertyComponent extends FieldPathComponent {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof FieldPathPropertyComponent) {
-      FieldPathPropertyComponent other = (FieldPathPropertyComponent) obj;
+    if (obj instanceof FieldPathPropertyComponent other) {
       return new EqualsBuilder().append(propertyName, other.propertyName).build();
     } else {
       return false;

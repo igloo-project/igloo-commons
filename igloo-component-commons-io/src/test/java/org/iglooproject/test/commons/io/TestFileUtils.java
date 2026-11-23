@@ -264,7 +264,7 @@ class TestFileUtils {
   /** Behavior when listing null directory */
   @Test
   void listRecursivelyNull() throws IOException {
-    DelegateFileFilter resultsFilter = new DelegateFileFilter(f -> true);
+    DelegateFileFilter resultsFilter = new DelegateFileFilter(_ -> true);
     assertThatCode(() -> FileUtils.listRecursively(null, resultsFilter, resultsFilter))
         .isInstanceOf(IllegalArgumentException.class);
   }
@@ -280,7 +280,7 @@ class TestFileUtils {
     assertThat(file1.createNewFile()).isTrue();
     assertThat(file2.createNewFile()).isTrue();
 
-    List<File> files = FileUtils.list(subFolder, (dir, fName) -> fName.equals(file1.getName()));
+    List<File> files = FileUtils.list(subFolder, (_, fName) -> fName.equals(file1.getName()));
     assertThat(files).singleElement().isEqualTo(file1);
   }
 

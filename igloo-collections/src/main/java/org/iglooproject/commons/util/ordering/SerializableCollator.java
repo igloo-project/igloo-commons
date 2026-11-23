@@ -80,10 +80,9 @@ public final class SerializableCollator extends Ordering<String> implements Seri
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof SerializableCollator)) {
+    if (!(obj instanceof SerializableCollator other)) {
       return false;
     }
-    SerializableCollator other = (SerializableCollator) obj;
     return new EqualsBuilder()
         .append(locale, other.locale)
         .append(collator, other.collator)

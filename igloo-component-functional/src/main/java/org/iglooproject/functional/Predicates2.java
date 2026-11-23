@@ -22,19 +22,19 @@ public final class Predicates2 {
   }
 
   public static <T> SerializablePredicate2<T> alwaysTrue() {
-    return t -> true;
+    return _ -> true;
   }
 
   public static <T> SerializablePredicate2<T> alwaysFalse() {
-    return t -> false;
+    return _ -> false;
   }
 
   public static <T> SerializablePredicate2<T> isNull() {
-    return t -> t == null;
+    return Objects::isNull;
   }
 
   public static <T> SerializablePredicate2<T> notNull() {
-    return t -> t != null;
+    return Objects::nonNull;
   }
 
   public static <T> SerializablePredicate2<T> not(Predicate<T> predicate) {

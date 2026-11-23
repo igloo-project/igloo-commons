@@ -13,24 +13,24 @@ public abstract class AbstractExecutionContext implements IExecutionContext {
 
   @Override
   public void run(Runnable runnable) {
-    try (ITearDownHandle openContext = open()) {
+    try (ITearDownHandle _ = open()) {
       runnable.run();
     }
   }
 
   @Override
   public <T> T run(Callable<T> callable) throws Exception {
-    try (ITearDownHandle openContext = open()) {
+    try (ITearDownHandle _ = open()) {
       return callable.call();
     }
   }
 
   @Override
   public boolean isReady() {
-    try (ITearDownHandle openContext = open()) {
+    try (ITearDownHandle _ = open()) {
       return true;
     } catch (Exception e) {
-      LOGGER.debug(getClass().getSimpleName() + " is not ready to be opened.", e);
+      LOGGER.debug("{} is not ready to be opened.", getClass().getSimpleName(), e);
       return false;
     }
   }
